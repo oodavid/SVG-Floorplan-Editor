@@ -11,24 +11,38 @@
 	<style type="text/css">
 		/* Prevent the cursor going screwy by disabling selections */
 			body {-webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none;}
+			div.clear {clear: both!important; height: 1px!important; margin: -1px 0 0 0!important; overflow: hidden!important; float: none!important;}
 		/* The toolbar */
-			#toolbar	{}
-			.tool		{}
-			.tool button	{width: 60px; height: 60px;}
+			#toolbar	{width: 200px; float: left;}
+			.tool		{width: 80px; height: 48px; margin: 0 0 5px 0;}
+			.tool [type=checkbox]	{height: 48px;}
+			.tool button			{float: right; width: 48px; height: 48px; text-indent: 100px; border: 1px solid #AAAAAA; background-color: #EEEEEE; background-position: center center; background-repeat: no-repeat; cursor: pointer;}
+			.tool button:hover,
+			.tool.active button		{background-color: #FFFFFF;}
+			.tool.active button		{border-color: #333333;}
+			/* Icons */
+				.pointer button		{background-image: url('./gfx/pointer.png');}
+				.labels button		{background-image: url('./gfx/labels.png');}
+				.arrows button		{background-image: url('./gfx/arrows.png');}
+				.asbestos button	{background-image: url('./gfx/asbestos.png');}
+				.items button		{background-image: url('./gfx/items.png');}
+				.walls button		{background-image: url('./gfx/walls.png');}
+				.floors button		{background-image: url('./gfx/floors.png');}
+				.images button		{background-image: url('./gfx/images.png');}
 
 
 
 
-		#editor {position: relative; width: 500px; height: 500px;}
+		#editor {position: relative; float: left; width: 500px; height: 500px;}
 		#svggrid,
 		#svgworkspace {position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
 	</style>
 </head>
 <body>
 
-	
+
 	<div id="toolbar">
-		<div class="tool">
+		<div class="tool pointer">
 			<button>pointer</button>
 		</div>
 		<div class="tool labels">
@@ -69,6 +83,24 @@
 		<div id="svgworkspace"></div>
 	</div>
 
+	<div class="clear"></div>
+
+	<h1>TODO</h1>
+	<ol>
+		<li>Code layout for: pointer, text, arrow, asbestos, items, walls, floors, images</li>
+		<li>Code layout for: event routing - what are the events?</li>
+		<li>Code layout for: selections: add to selection (highlight), remove from selection (unhighlight), clear (aka remove all), apply (to entire selection)</li>
+		<li>Plan: minimum feature set, what to do today</li>
+		<li>Make the stage huge</li>
+		<li>Layer toggling (use display=&quot;none&quot;)</li>
+		<li>Pointer - Click to select one - activate correct &quot;tool&quot;</li>
+		<li>Pointer - Drag to select multiple - loop visible layers, find objects within bounds - if multiple, keep pointer active</li>
+		<li>Selection - drag to move (single or multiple) - DELETE to delete</li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ol>
 
 
 	<!-- Moving stuff -->

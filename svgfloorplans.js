@@ -1,9 +1,85 @@
 FP = {};
 // Settings
-FP.snaplevel = 20;					// Snap-level 20px
+FP.snaplevel	= 10;					// Snap-level 20px
 FP.currentObject = false;			// The "active" object
-FP.mouse       = { x: 0, y: 0 };	// Mouse coords (current)
-FP.mousedowned = { x: 0, y: 0 };	// Mouse coords (when we mousedowned)
+FP.mouse		= { x: 0, y: 0 };	// Mouse coords (current)
+FP.mousedowned	= { x: 0, y: 0 };	// Mouse coords (when we mousedowned)
+
+/***************** Selection *****************/
+
+FP.selection = {};
+FP.selection.data = []; // A list of elements in the selection
+FP.selection.clear = function(){
+	// Remove everything
+	FP.selection.data = [];
+	// Redraw
+	FP.selection.redraw();
+};
+FP.selection.add = function(elements){
+	// Delegate
+	FP.selection.add_remove_toggle(elements, 'add');
+};
+FP.selection.remove = function(elements){
+	// Delegate
+	FP.selection.add_remove_toggle(elements, 'remove');
+};
+FP.selection.toggle = function(elements){
+	// Delegate
+	FP.selection.add_remove_toggle(elements, 'toggle');
+};
+FP.selection.add_remove_toggle = function(elements, mode){
+	// Convert single elements into an array
+	if(!FP.utils.is_array(elements)){
+		elements = [ elements ];
+	}
+	// Loop the elements
+	$.each(elements, function(k,v){
+		// Is it in the array?
+		var index = $.inArray(v, FP.selection.data);
+		// Toggle?
+		if(mode == 'toggle'){
+			mode = (index == -1) ? 'add' : 'remove';
+		}
+		// Add or remove?
+		if(mode == 'add' && index == -1){
+			FP.selection.data.push(v);
+		} else if(mode == 'remove' && index != -1){
+			FP.selection.data.splice(index, 1);
+		}
+	});
+	// Redraw
+	FP.selection.redraw();
+};
+FP.selection.redraw = function(){
+	// Redraw the selection boxes
+	console.log('redraw', FP.selection.data);
+};
+FP.selection.applyFunction = function(f, redraw){
+	// Loop the elements and apply the function to them
+	$.each(elements, function(k,v){
+		// Apply the function
+		f(v);
+	});
+	// Redraw?
+	if(redraw){
+		FP.selection.redraw();
+	}
+};
+
+/***************** Utilities *****************/
+
+FP.utils = {};
+FP.utils.is_array = function(input){
+	return typeof(input)=='object'&&(input instanceof Array);
+}
+
+
+
+
+
+
+
+
 // When you're ready
 FP.init = function(e){
 	// Load the BG-grid
