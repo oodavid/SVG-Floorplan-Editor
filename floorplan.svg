@@ -3,28 +3,28 @@
 	<defs>
 		<!-- Hatch 1 - diagonal lines \ -->
 		<pattern id="hatch001" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-			<rect x="0" y="0" height="10" width="10" style="fill: #DDDDDD;" />
+			<rect x="0" y="0" height="10" width="10" fill="#DDDDDD" />
 			<line x1="10" y1="10" x2="0" y2="0" stroke="999999" stroke-width="1" />
 		</pattern>
 		<!-- Hatch 2 - diagonal lines / -->
 		<pattern id="hatch002" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-			<rect x="0" y="0" height="10" width="10" style="fill: #DDDDDD;" />
+			<rect x="0" y="0" height="10" width="10" fill="#DDDDDD" />
 			<line x1="0" y1="10" x2="10" y2="0" stroke="999999" stroke-width="1" />
 		</pattern>
 		<!-- Hatch 3 - cross hatch X-->
 		<pattern id="hatch003" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-			<rect x="0" y="0" height="10" width="10" style="fill: #DDDDDD;" />
+			<rect x="0" y="0" height="10" width="10" fill="#DDDDDD" />
 			<line x1="0" y1="10" x2="10" y2="0" stroke="999999" stroke-width="1" />
 			<line x1="10" y1="10" x2="0" y2="0" stroke="999999" stroke-width="1" />
 		</pattern>
 		<!-- Hatch 4 - dots -->
 		<pattern id="hatch004" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
-			<rect x="0" y="0" height="6" width="6" style="fill: #DDDDDD;" />
+			<rect x="0" y="0" height="6" width="6" fill="DDDDDD" />
 			<circle cx="3" cy="3" r="1" fill="#999999"/>
 		</pattern>
 		<!-- Hatch 5 - grid # -->
 		<pattern id="hatch005" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-			<rect x="0" y="0" height="10" width="10" style="fill: #DDDDDD;" />
+			<rect x="0" y="0" height="10" width="10" fill="#DDDDDD" />
 			<line x1="0" y1="0" x2="0" y2="10" stroke="999999" stroke-width="1" />
 			<line x1="0" y1="0" x2="10" y2="0" stroke="999999" stroke-width="1" />
 		</pattern>
@@ -35,7 +35,7 @@
 		</g>
 		<!-- Asbestos (centered) -->
 		<g id="asbestos001">
-			<rect x="-15" y="-15" height="30" width="30" style="fill: #ABCDEF;" stroke="000000" stroke-width="1" />
+			<rect x="-15" y="-15" height="30" width="30" fill="#ABCDEF" stroke="000000" stroke-width="1" />
 		</g>
 		<!-- Arrowhead -->
 		<marker id="arrowhead001" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto">
@@ -52,13 +52,13 @@
 	<g id="sketch">
 		<!-- Layer: Images -->
 		<g id="images">
-			<image x="20" y="300" width="400px" height="400px" xlink:href="./trace.gif">
+			<image class="image" x="20" y="300" width="400px" height="400px" xlink:href="./trace.gif">
 				<title>My image</title>
 			</image>
 		</g>
 		<!-- Layer: Floors / Fills -->
 		<g id="floors">
-			<polygon points="20,20 200,20 200,160 150,160 150,60 20,60" style="fill: url(#hatch004); fill-rule: nonzero;"/>
+			<polygon class="floor" points="20,20 200,20 200,160 150,160 150,60 20,60" fill="url(#hatch004)" fill-rule="nonzero"/>
 		</g>
 		<!-- Layer: Walls -->
 		<g id="walls" stroke="333333" stroke-width="4" stroke-linecap="square" stroke-linejoin="miter" fill="none">
@@ -91,4 +91,21 @@
 			<text x="400" y="50">Some label</text>
 		</g>
 	</g>
+
+	<!-- This should be added and removed programmatically for our editor -->
+	<g id="editor" stroke="#F07746" stroke-width="2" fill="#F07746" fill-opacity="0.3">
+		<!-- Dragselect -->
+		<rect x="100" y="150" height="200" width="120" />
+		<!-- An object selection-->
+		<g>
+			<rect x="300" y="150" height="200" width="120" fill="transparent" stroke-dasharray="2 2" />
+			<g transform="translate(310,160)">
+				<line x1="-5" y1="-5" x2="5" y2="5" />
+				<line x1="-5" y1="5" x2="5" y2="-5" />
+			</g>
+		</g>
+		<!-- A handle -->
+		<circle cx="260" cy="300" r="5" />
+	</g>
+
 </svg>

@@ -34,8 +34,8 @@
 
 
 		#editor {position: relative; float: left; width: 500px; height: 500px;}
-		#svggrid,
-		#svgworkspace {position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
+		#svg_bg,
+		#svg_source {position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
 	</style>
 </head>
 <body>
@@ -77,10 +77,10 @@
 
 	<!-- The editor -->
 	<div id="editor">
-		<!-- BG grid -->
-		<div id="svggrid"></div>
-		<!-- SVG workspace -->
-		<div id="svgworkspace"></div>
+		<!-- SVG BG (grid) -->
+		<div id="svg_bg"></div>
+		<!-- SVG source -->
+		<div id="svg_source"></div>
 	</div>
 
 	<div class="clear"></div>
@@ -107,7 +107,7 @@
 	<h2>How to move an item</h2>
 	<pre>
 // Reference the SVG object
-var svg = $('#svgworkspace').svg('get');
+var svg = $('#svg_source').svg('get');
 // Grab the second item in the walls group (should be a door)
 var item = $('#walls use:eq(1)', svg.root());
 // Move it
