@@ -1,74 +1,65 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+
 	<!-- Patterns and Items -->
 	<defs>
 		<!-- Hatch 1 - diagonal lines \ -->
 		<pattern id="hatch001" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
 			<rect x="0" y="0" height="10" width="10" fill="#DDDDDD" />
-			<line x1="10" y1="10" x2="0" y2="0" stroke="999999" stroke-width="1" />
+			<line x1="10" y1="10" x2="0" y2="0" stroke="#999999" stroke-width="1" />
 		</pattern>
 		<!-- Hatch 2 - diagonal lines / -->
 		<pattern id="hatch002" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
 			<rect x="0" y="0" height="10" width="10" fill="#DDDDDD" />
-			<line x1="0" y1="10" x2="10" y2="0" stroke="999999" stroke-width="1" />
+			<line x1="0" y1="10" x2="10" y2="0" stroke="#999999" stroke-width="1" />
 		</pattern>
 		<!-- Hatch 3 - cross hatch X-->
 		<pattern id="hatch003" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
 			<rect x="0" y="0" height="10" width="10" fill="#DDDDDD" />
-			<line x1="0" y1="10" x2="10" y2="0" stroke="999999" stroke-width="1" />
-			<line x1="10" y1="10" x2="0" y2="0" stroke="999999" stroke-width="1" />
+			<line x1="0" y1="10" x2="10" y2="0" stroke="#999999" stroke-width="1" />
+			<line x1="10" y1="10" x2="0" y2="0" stroke="#999999" stroke-width="1" />
 		</pattern>
 		<!-- Hatch 4 - dots -->
 		<pattern id="hatch004" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
-			<rect x="0" y="0" height="6" width="6" fill="DDDDDD" />
+			<rect x="0" y="0" height="6" width="6" fill="#DDDDDD" />
 			<circle cx="3" cy="3" r="1" fill="#999999"/>
 		</pattern>
 		<!-- Hatch 5 - grid # -->
-		<pattern id="hatch005" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+		<pattern id="hatch005" x="5" y="5" width="10" height="10" patternUnits="userSpaceOnUse">
 			<rect x="0" y="0" height="10" width="10" fill="#DDDDDD" />
 			<line x1="0" y1="0" x2="0" y2="10" stroke="999999" stroke-width="1" />
 			<line x1="0" y1="0" x2="10" y2="0" stroke="999999" stroke-width="1" />
 		</pattern>
 		<!-- Door -->
 		<g id="item001">
-			<path d="M0,20 a20,20 0 0,0 20,-20 L0,0" fill="DDDDDD" fill-opacity="0.5" stroke="000000" stroke-width="2" stroke-dasharray="4, 4" />
-			<line x1="0" y1="0" x2="20" y2="0" stroke="333333" stroke-width="4" stroke-linecap="round" />
+			<path d="M0,20 a20,20 0 0,0 20,-20 L0,0" fill="#DDDDDD" fill-opacity="0.5" stroke="#000000" stroke-width="2" stroke-dasharray="4, 4" />
+			<line x1="0" y1="0" x2="20" y2="0" stroke="#333333" stroke-width="4" stroke-linecap="round" />
 		</g>
 		<!-- Asbestos (centered) -->
 		<g id="asbestos001">
-			<rect x="-15" y="-15" height="30" width="30" fill="#ABCDEF" stroke="000000" stroke-width="1" />
+			<rect x="-15" y="-15" height="30" width="30" fill="#ABCDEF" stroke="#333333" stroke-width="2" />
 		</g>
 		<!-- Arrowhead -->
 		<marker id="arrowhead001" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto">
-			<path d="M0,0 L10,5 L 0,10 z" fill="333333" />
+			<path d="M0,0 L10,5 L 0,10 z" fill="#333333" />
 		</marker>
 	</defs>
-
-
-
-
-
 
 	<!-- The sketch -->
 	<g id="sketch">
 		<!-- Layer: Images -->
 		<g id="images">
-			<image class="image" x="20" y="300" width="400px" height="400px" xlink:href="./trace.gif">
-				<title>My image</title>
-			</image>
+			<image class="image" x="20" y="300" width="400px" height="400px" xlink:href="./trace.gif"></image>
 		</g>
 		<!-- Layer: Floors / Fills -->
-		<g id="floors">
-			<polygon class="floor" points="20,20 200,20 200,160 150,160 150,60 20,60" fill="url(#hatch004)" fill-rule="nonzero"/>
+		<g id="floors" fill-rule="nonzero">
+			<path transform="translate(20,20)" d="M0,0 l180,0 l0,140 l-60,0 l0,-100 l-120,0" fill="url(#hatch005)" />
 		</g>
 		<!-- Layer: Walls -->
 		<g id="walls" stroke="333333" stroke-width="4" stroke-linecap="square" stroke-linejoin="miter" fill="none">
-			<path d="M20,20 L200,20 L200,160 L190,160" />
-			<path d="M160,160 L150,160 L150,60 L130,60 L130,180" />
-			<!-- Window? (to be edited like a regular path??) -->
-			<g>
-				<path d="M400,100 L460,100 L500,140" />
-				<path d="M400,100 L460,100 L500,140" stroke-width="2" stroke="FFFFFF" />
-			</g>
+			<path transform="translate(20,20)"   d="M0,0 l180,0 l0,140 l-20,0" />
+			<path transform="translate(160,160)" d="M0,0 l-20,0 l0,-100 l-20,0 l0,40" />
+			<!-- Window - just a blue line -->
+			<path transform="translate(500,100)" d="M0,0 l60,0 l40,40" stroke="#ABCDEF" />
 		</g>
 		<!-- Layer: Items -->
 		<g id="items">
@@ -79,8 +70,8 @@
 			<use xlink:href="#item001" transform="translate(160,160) rotate(90) scale(1,-1)" />
 		</g>
 		<!-- Layer: Asbestos -->
-		<g id="items">
-			<use class="item" xlink:href="#asbestos001" transform="translate(350,350)" />
+		<g id="asbestos">
+			<use class="asbestos" xlink:href="#asbestos001" transform="translate(350,350)" />
 		</g>
 		<!-- Layer: Arrows -->
 		<g id="arrows" stroke="333333" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" fill="none">
@@ -94,6 +85,17 @@
 
 	<!-- This should be added and removed programmatically for our editor -->
 	<g id="editor" stroke="#F07746" stroke-width="2" fill="#F07746" fill-opacity="0.3">
+		<style type="text/css">
+			<![CDATA[
+				#sketch image:hover			{opacity:.6;}
+				#sketch #floors path:hover	{fill: #F07746;}
+				#sketch #walls path:hover	{stroke: #F07746;}
+				#sketch #items use:hover	{opacity:.6;}
+				#sketch #asbestos use:hover	{opacity:.6;}
+				#sketch #arrows path:hover	{stroke: #F07746;}
+				#sketch #labels text:hover	{fill: #F07746;}
+			]]>
+		</style>
 		<!-- Dragselect -->
 		<rect x="100" y="150" height="200" width="120" />
 		<!-- An object selection-->

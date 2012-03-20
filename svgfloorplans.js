@@ -22,10 +22,6 @@ $(document).ready(FP.init);
 FP.load = function(){
 	// Start the delegates
 	FP.delegates.init();
-	// Test - SELECT A FLOOR AND DOOR
-	var svg = $('#svg_source').svg('get');
-	var items = $('#floors .floor, #items use', svg.root());
-	FP.selection.add(items);
 };
  
 /***************** Delegates *****************/
@@ -65,11 +61,11 @@ FP.delegates.mouseMove = function(e){
 FP.delegates.mouseDown = function(e){
 	// Take a look at the target...
 	console.log(e.target);
-	// Bubble up till we find: line, text, image, polygon, use
+	// Bubble up till we find: path, text, image, use...?
 	console.log('mousedown');
 };
 FP.delegates.mouseUp = function(e){
-	console.log('mouseup');
+	console.log('mouseup - if it\'s quick, call it a click?');
 };
 
 /***************** Selection *****************/
@@ -122,8 +118,8 @@ FP.selection.redraw = function(){
 	var svg			= $('#svg_source').svg('get');
 	var svgbounds	= $('#svg_source')[0].getBoundingClientRect();
 	var g			= $('#editor', svg.root());
-	// Empty the selection?
-	g.empty();
+	// Empty the rects
+	g.find('rect, g, circle').remove();
 	// Redraw the selection
 	$.each(FP.selection.data, function(k,v){
 		var bounds = v.getBoundingClientRect();
@@ -161,14 +157,130 @@ FP.tools.toggle = function(){
 
 
 /*
+ * Moving stuff...
  *
+ * We need to deal with each of the different objects individually:
  *
- *
- *
- *
+ *		image, text
+ *			x, y
+ *		path
+ *			each of the d > M and L value-pairs
+ *		use
+ *			
  */
-
-
+console.warn('not sure where this stuff lives yet - selection makes sense?');
+FP.move = function(el, dx, dy){
+	el = $(el);
+	switch(el[0].nodeName){
+		case "image":
+		case "text":
+			// Just the x and y attributes
+			var x = parseFloat(el.attr('x'), 10) + dx;
+			var y = parseFloat(el.attr('y'), 10) + dx;
+			el.attr('x', x);
+			el.attr('y', y);
+			break;
+		case "path":
+		case "use":
+			// Transform attribute
+			var transform = el.attr('transform');
+			if(transform){
+				// Pull out the translate(x,y) part
+				var regex = /translate\((\-?\d*),(\-?\d*)\)/i;
+				var translate = transform.match(regex);
+				if(translate){
+					// Update the coords
+					var x = parseFloat(translate[1], 10) + dx;
+					var y = parseFloat(translate[2], 10) + dy;
+					translate = "translate(" + x + "," + y + ")";
+					// Tweak the attribute
+					transform = transform.replace(regex, translate);
+				} else {
+					// Add the translate part
+					transform += " translate(" + dx + "," + dy + ")";
+				}
+			} else {
+				// Set the attribute
+				transform = "translate(" + dx + "," + dy + ")";
+			}
+			// Apply the attribute
+			el.attr('transform', transform);
+			break;
+	}
+};
+FP.flip = function(el, dir){
+	el = $(el);
+	switch(el[0].nodeName){
+		case "use":
+			// Transform attribute
+			var transform = el.attr('transform');
+			if(transform){
+				// Pull out the scale(x,y) part
+				var regex = /scale\((\-?\d*),(\-?\d*)\)/i;
+				var scale = transform.match(regex);
+				if(scale){
+					// Update the coords
+					var x = parseFloat(scale[1], 10);
+					var y = parseFloat(scale[2], 10);
+					if(dir == "x-axis"){
+						x *= -1;
+					} else {
+						y *= -1;
+					}
+					scale = "scale(" + x + "," + y + ")";
+					// Tweak the attribute
+					transform = transform.replace(regex, scale);
+				} else {
+					// Add the scale part
+					if(dir == "x-axis"){
+						transform += " scale(-1, 1)";
+					} else {
+						transform += " scale(1, -1)";
+					}
+				}
+			} else {
+				// Set the attribute
+				if(dir == "x-axis"){
+					transform = "scale(-1, 1)";
+				} else {
+					transform = "scale(1, -1)";
+				}
+			}
+			// Apply the attribute
+			el.attr('transform', transform);
+			break;
+	}
+};
+FP.rotate = function(el, ddeg){
+	el = $(el);
+	switch(el[0].nodeName){
+		case "use":
+			// Transform attribute
+			var transform = el.attr('transform');
+			if(transform){
+				// Pull out the rotate(deg) part
+				var regex = /rotate\((\-?\d*)\)/i;
+				var rotate = transform.match(regex);
+				if(rotate){
+					// Update the coords
+					var deg = parseFloat(rotate[1], 10);
+					deg += ddeg;
+					rotate = "rotate(" + deg + ")";
+					// Tweak the attribute
+					transform = transform.replace(regex, rotate);
+				} else {
+					// Add the rotate part
+					transform += "rotate(" + ddeg + ")";
+				}
+			} else {
+				// Set the attribute
+				transform = "rotate(" + ddeg + ")";
+			}
+			// Apply the attribute
+			el.attr('transform', transform);
+			break;
+	}
+};
 
 /***************** Utilities *****************/
 
@@ -179,10 +291,59 @@ FP.utils.is_array = function(input){
 };
 FP.utils.path_to_array = function(path){
 	// Splits an SVG path into an array of points
+	// FUNCTIONALITY FROM THE OLD MOVE THINGIES - SHOWS HOW TO PARSE THE DATA :-)
+	// Path data attribute
+	var d = el.attr('d');
+	// Data is defined by a letter, followed by non-letters - break it into parts
+	var regex = /[a-z][^a-z]*/ig;
+	var segments = d.match(regex);
+	// Reset the data
+	var d = '';
+	// To pull out the numerical parts of M and L
+	var regex = /(M|L)[\s]*(\-?\d*)[\s\,]*(\-?\d*)/;
+	// Loop the segments and adjust them...
+	$.each(segments, function(k,v){
+		// First letter...
+		switch(v[0]){
+			case 'M':
+			case 'L':
+				// Update the coords
+				m=regex.exec(v);
+				var x = parseFloat(m[2], 10) + dx;
+				var y = parseFloat(m[3], 10) + dy;
+				// Add it
+				d += m[1] + x + "," + y;
+				break;
+			default:
+				// Keep it as-is
+				d += v;
+		}
+	});
+	// Apply the new attribute
+	el.attr('d', d);
 };
 
 
 
+FP.runtest = function(){
+	// Test - Select a LOAD of things (everything?)
+	var svg = $('#svg_source').svg('get');
+	var items = $('#images image, #floors path, #items use, #walls path, #arrows path, #labels text, #asbestos use', svg.root());
+	FP.selection.add(items);
+	// Loop the selection and move them
+	// console.log('Does FP.selection.applyFunction have any use? Maybe modify if to take parameters to pass on...');
+	$.each(FP.selection.data, function(k,v){
+		// Move in a random direction
+		var x = 20 * (Math.round((Math.random() * 2) - 1));
+		var y = 20 * (Math.round((Math.random() * 2) - 1));
+		// FP.move(v, x, y);
+		// FP.flip(v, 'x-axis');
+		// FP.flip(v, 'y-axis');
+		FP.rotate(v, 45);
+	});
+	// Redraw the selection
+	FP.selection.redraw();
+};
 
 
 
