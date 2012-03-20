@@ -1,0 +1,819 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"rob",
+				"robotid"
+			],
+			[
+				"uc",
+				"ucfirst"
+			],
+			[
+				"array_un",
+				"array_unshift"
+			],
+			[
+				"F",
+				"F0"
+			],
+			[
+				"list-style",
+				"list-style-type"
+			],
+			[
+				"passwo",
+				"password_again"
+			],
+			[
+				"is_",
+				"is_string"
+			],
+			[
+				"floo",
+				"floorplan"
+			],
+			[
+				"air",
+				"air_test"
+			],
+			[
+				"risk",
+				"risk_assessments"
+			],
+			[
+				"an",
+				"analysts"
+			],
+			[
+				"array_key",
+				"array_key_exists"
+			],
+			[
+				"emai",
+				"email_1"
+			],
+			[
+				"tel",
+				"tel_1"
+			],
+			[
+				"ema",
+				"email_1"
+			],
+			[
+				"prod",
+				"product_type"
+			],
+			[
+				"original",
+				"ORIGINAL"
+			],
+			[
+				"offic",
+				"office_name"
+			],
+			[
+				"bulk_",
+				"bulk_surveyor"
+			],
+			[
+				"auth",
+				"auth_user"
+			],
+			[
+				"fore",
+				"foreign_id"
+			],
+			[
+				"build",
+				"building_locations"
+			],
+			[
+				"asbes",
+				"asbestos_type"
+			],
+			[
+				"iframe",
+				"iframe_id"
+			],
+			[
+				"ul",
+				"ul"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"invoice",
+				"invoice"
+			],
+			[
+				"array_k",
+				"array_key_exists"
+			],
+			[
+				"id",
+				"ids"
+			],
+			[
+				"ch",
+				"checked"
+			],
+			[
+				"index",
+				"indexed_select"
+			],
+			[
+				"icon",
+				"icon32"
+			],
+			[
+				"bu",
+				"button"
+			],
+			[
+				"floorplans",
+				"floorplans"
+			],
+			[
+				"light",
+				"lightform"
+			],
+			[
+				"item",
+				"item_description"
+			],
+			[
+				"building",
+				"building"
+			],
+			[
+				"lo",
+				"location"
+			],
+			[
+				"cli",
+				"clickshow"
+			],
+			[
+				"job",
+				"job_id"
+			],
+			[
+				"read",
+				"ready-to-invoice"
+			],
+			[
+				"y",
+				"not_yet"
+			],
+			[
+				"file",
+				"file_store"
+			],
+			[
+				"locations",
+				"Locations"
+			],
+			[
+				"N",
+				"no_search_results"
+			],
+			[
+				"pro",
+				"product_type"
+			],
+			[
+				"report",
+				"reports"
+			],
+			[
+				"add",
+				"address"
+			],
+			[
+				"form_site",
+				"form_site_finder"
+			],
+			[
+				"get",
+				"getBounds"
+			],
+			[
+				"v",
+				"var"
+			],
+			[
+				"Cost",
+				"connection_status"
+			],
+			[
+				"contra",
+				"contracts"
+			],
+			[
+				"for",
+				"foreign_id"
+			],
+			[
+				"contract",
+				"contract"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/home/david/Documents/svgfloorplans.com/floorplan.svg",
+			"settings":
+			{
+				"buffer_size": 229,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/david/Documents/svgfloorplans.com/index.html",
+			"settings":
+			{
+				"buffer_size": 1349,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 75.0,
+		"selected_items":
+		[
+			[
+				"fetch",
+				"Fetch"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"pac k",
+				"Package Control: List Packages"
+			],
+			[
+				"sort",
+				"Sort Lines"
+			],
+			[
+				"setting",
+				"Preferences: Package Control Settings – Default"
+			],
+			[
+				"proj",
+				"Project: Save As"
+			],
+			[
+				"diff",
+				"FileDiffs: Menu"
+			],
+			[
+				"",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 441.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/david/Desktop/floorplan.svg",
+		"/home/david/Desktop/floorplan.htm",
+		"/home/david/Desktop/productivity.txt",
+		"/home/david/Documents/lucion.co.uk/actions/NexGen.php",
+		"/home/david/Documents/lucion.co.uk/pages/logout.php",
+		"/home/david/Documents/lucion.co.uk/app/version.php",
+		"/home/david/Documents/lucion.co.uk/common.php",
+		"/home/david/Documents/lucion.co.uk/pages/crm.php",
+		"/home/david/Documents/lucion.co.uk/pages/dashboard.php",
+		"/home/david/Documents/lucion.co.uk/pages/dashboard-client.php",
+		"/home/david/Documents/lucion.co.uk/pages/dashboard-staff.php",
+		"/home/david/Documents/lucion.co.uk/pages/help.php",
+		"/home/david/Documents/lucion.co.uk/pages/help-client.php",
+		"/home/david/Documents/lucion.co.uk/pages/help-staff.php",
+		"/home/david/Documents/lucion.co.uk/pages/login.php",
+		"/home/david/Documents/lucion.co.uk/pages/npg.php",
+		"/home/david/Documents/lucion.co.uk/pages/register-staff.php",
+		"/home/david/Documents/lucion.co.uk/pages/rig.php",
+		"/home/david/Documents/lucion.co.uk/pages/rig (old).php",
+		"/home/david/Documents/lucion.co.uk/pages/switch-to-client.php",
+		"/home/david/Documents/lucion.co.uk/pages/workload.php",
+		"/home/david/Documents/lucion.co.uk/pages/staff.php",
+		"/home/david/Documents/lucion.co.uk/pages/activity.php",
+		"/home/david/Documents/lucion.co.uk/pages/confirm.php",
+		"/home/david/Documents/lucion.co.uk/pages/register.php",
+		"/home/david/Documents/lucion.co.uk/.supporting_files/useful.SQL",
+		"/home/david/Documents/lucion.co.uk/css/common.css",
+		"/home/david/Desktop/lucion-clients-todo.txt",
+		"/home/david/Documents/lucion.co.uk/index.php",
+		"/home/david/Documents/lucion.co.uk/actions/register-staff.php",
+		"/home/david/Desktop/robot.js",
+		"/home/david/Documents/lucion.co.uk/js/common.js",
+		"/home/david/Documents/lucion.co.uk/js/dashboard-client.js",
+		"/home/david/Documents/lucion.co.uk/css/dev.css",
+		"/home/david/Documents/lucion.co.uk/actions/index.php",
+		"/home/david/Documents/lucion.co.uk/actions/register.php",
+		"/home/david/Documents/lucion.co.uk/js/chrome.js",
+		"/home/david/Documents/lucion.co.uk/css/dashboard-staff.css",
+		"/home/david/Documents/lucion.co.uk/js/dashboard-staff.js",
+		"/home/david/Documents/lucion.co.uk/schema/lightform.php",
+		"/home/david/Documents/lucion.co.uk/.htaccess",
+		"/home/david/Documents/lucion.co.uk/actions/login.php",
+		"/home/david/Documents/lucion.co.uk/pages/tmp/index.php",
+		"/home/david/Documents/lucion.co.uk/schema/schema.php",
+		"/home/david/Documents/lucion.co.uk/exposed.php",
+		"/home/david/Documents/lucion.co.uk/js/geometry.js",
+		"/home/david/Documents/lucion.co.uk/js/jquery-1.6.2.min.js",
+		"/home/david/Documents/lucion.co.uk/actions/client.php",
+		"/home/david/Desktop/npg.txt",
+		"/home/david/Desktop/reports/22144878/Bulk Sample Report.msg",
+		"/home/david/Desktop/styledmap",
+		"/home/david/Desktop/chart.html",
+		"/home/david/Downloads/phpcoord-2.3/test-2.3.php",
+		"/home/david/Downloads/phpcoord-2.3/phpcoord-2.3.php",
+		"/home/david/Downloads/phpcoord-2.3/readme-2.3.txt",
+		"/home/david/Documents/lucion.co.uk/pages/tmp/utils.php",
+		"/home/david/Documents/lucion.co.uk/print/index.php",
+		"/home/david/Documents/lucion.co.uk/.supporting_files/lucion.sublime-workspace",
+		"/home/david/Documents/lucion.co.uk/pages/register-confirm.php",
+		"/home/david/Documents/lucion.co.uk/css/style.css",
+		"/home/david/Documents/lucion.co.uk/js/script.js",
+		"/home/david/Documents/1daylater.com/index.php",
+		"/home/david/Documents/lucion.co.uk/pages/router.php",
+		"/home/david/Documents/lucion.co.uk/pages/home.php",
+		"/home/david/Dropbox/Paul/1DayLater/Development/SERVER/www.1daylater.com/web/content/index.ncl",
+		"/home/david/Documents/huntersmotorcycles.co.uk/index.php",
+		"/home/david/Documents/lucion.co.uk/login.php",
+		"/home/david/Documents/lucion.co.uk/pages/extras.php",
+		"/home/david/Documents/huntersmotorcycles.co.uk/.htaccess",
+		"/home/david/Documents/lucion.co.uk/rig.php",
+		"/home/david/Documents/lucion.co.uk/debug.txt",
+		"/home/david/Documents/lucion.co.uk/home.php",
+		"/home/david/Documents/lucion.co.uk/labs.php",
+		"/home/david/Documents/lucion.co.uk/mailtest.php",
+		"/home/david/Documents/lucion.co.uk/risk.php",
+		"/home/david/Documents/lucion.co.uk/newrisks.php",
+		"/home/david/Documents/lucion.co.uk/.gitignore",
+		"/home/david/Documents/lucion.co.uk/js/osgridref.js",
+		"/home/david/Documents/lucion.co.uk/js/my_osgridref.js",
+		"/home/david/Documents/Lucion-Nexgen-Mobile/Resources/view_location.js",
+		"/home/david/Documents/Lucion-Nexgen-Mobile/Resources/schedule.js",
+		"/home/david/Documents/Lucion-Nexgen-Mobile/Resources/add_edit_risk_assessment.js",
+		"/home/david/Documents/lucion.co.uk/info.php",
+		"/home/david/Documents/lucion.co.uk/app/versioncheck.php",
+		"/home/david/Documents/lucion.co.uk/schema/lightform.css",
+		"/home/david/Documents/lucion.co.uk/print/preview.html",
+		"/home/david/Documents/lucion.co.uk/print/templates/bulk_id.html",
+		"/home/david/Documents/lucion.co.uk/staff.php",
+		"/home/david/Documents/lucion.co.uk/print/wkhtmltopdf-reset/wkhtmltopdf.js",
+		"/home/david/Documents/lucion.co.uk/crm.php",
+		"/home/david/Documents/lucion.co.uk/actions/zenithies.org.crm2011online.zip",
+		"/home/david/Desktop/jobs.json",
+		"/home/david/Desktop/printtest.html",
+		"/home/david/Downloads/schema.txt",
+		"/home/david/Documents/lucion.co.uk/activity.php",
+		"/home/david/Documents/lucion.co.uk/workload.php",
+		"/home/david/Desktop/workstation.md",
+		"/home/david/Documents/lucion.co.uk/schema/lightform.js",
+		"/home/david/Desktop/Lucion BUlk Notes.md",
+		"/home/david/Desktop/index.html",
+		"/home/david/Documents/lucion.co.uk/print/templates/script.js",
+		"/home/david/Documents/lucion.co.uk/print/templates/management.html",
+		"/home/david/Documents/lucion.co.uk/print/templates/index.html",
+		"/home/david/Documents/lucion.co.uk/minify/index.php",
+		"/home/david/Documents/lucion.co.uk/github.php",
+		"/home/david/Documents/lucion.co.uk/print/wkhtmltopdf-reset/wkhtmltopdf.css",
+		"/home/david/Documents/lucion.co.uk/print/templates/header.html",
+		"/home/david/Documents/lucion.co.uk/print/templates/footer.html",
+		"/home/david/Downloads/download",
+		"/home/david/Documents/lucion.co.uk/schema/demo/common.php",
+		"/home/david/Documents/lucion.co.uk/print/templates/style.css",
+		"/home/david/Documents/lucion.co.uk/print/templates/date.format.js",
+		"/home/david/Documents/lucion.co.uk/mysqltest.php",
+		"/home/david/Documents/lucion.co.uk/help.php",
+		"/home/david/Documents/corrodere.com/corrodere.txt",
+		"/home/david/Desktop/nexgen-backup-trim.sql",
+		"/home/david/Documents/lucion.co.uk/print/wkhtmltopdf-reset/data.js",
+		"/home/david/Documents/oodavid.com/cv.htm",
+		"/home/david/Documents/FarmFreshCSS/index.html",
+		"/home/david/Documents/FarmFreshCSS/stub.css",
+		"/home/david/Desktop/readinglocations.sql",
+		"/home/david/.config/sublime-text-2/Packages/User/Global.sublime-settings",
+		"/home/david/.config/sublime-text-2/Packages/Default/Global.sublime-settings",
+		"/home/david/.config/sublime-text-2/Packages/User/Distraction Free.sublime-settings",
+		"/home/david/.config/sublime-text-2/Packages/User/CSS.sublime-settings",
+		"/home/david/.config/sublime-text-2/Packages/User/Base File.sublime-settings",
+		"/home/david/.config/sublime-text-2/Packages/Default/Base File.sublime-settings",
+		"/home/david/Documents/FarmFreshCSS/farmfresh.css"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/home/david/Documents/lucion.co.uk/",
+			"/home/david/Documents/lucion.co.uk/js/",
+			"/home/david/Documents/lucion.co.uk/",
+			"/home/david/Documents/lucion.co.uk/pages",
+			"/home/david/Documents/lucion.co.uk",
+			"/home/david/Documents/Lucion-Nexgen-Mobile",
+			"/home/david/Documents/lucion.co.uk",
+			"/home/david/Documents/Lucion-Nexgen-Mobile",
+			"/home/david/Documents/lucion.co.uk",
+			"/home/david/Documents/lucion.co.uk, -*.sql",
+			"/home/david/Documents/lucion.co.uk",
+			"/home/david/Documents/lucion.co.uk, -*.sql, -*.txt, -*scheduler*",
+			"/home/david/Documents/lucion.co.uk, -*.sql, -*.txt, -schedule",
+			"/home/david/Documents/lucion.co.uk, -*.sql, -*.txt",
+			"/home/david/Documents/lucion.co.uk, -*.sql, -*.txt, -*scheduler*, *.js",
+			"/home/david/Documents/lucion.co.uk, -*.sql, -*.txt, -*scheduler*",
+			"/home/david/Documents/lucion.co.uk, -*.sql, -*.txt, -*\\/scheduler\\/*",
+			"/home/david/Documents/lucion.co.uk, -*.sql, -*.txt, -*/scheduler/*",
+			"/home/david/Documents/lucion.co.uk, -*.sql, -*.txt, -*scheduler*",
+			"/home/david/Documents/lucion.co.uk, -*.sql, -*.txt",
+			"/home/david/Documents/lucion.co.uk",
+			"/home/david/Documents/lucion.co.uk,*.css",
+			"/home/david/Documents/lucion.co.uk, *.css",
+			"/home/david/Documents/lucion.co.uk, -*.txt, -*.sql",
+			"/home/david/Documents/lucion.co.uk, -*supporting_files*",
+			"/home/david/Documents/lucion.co.uk, -*.supporting_files/*",
+			"/home/david/Documents/lucion.co.uk, -*.sql, -*.txt",
+			"/home/david/Documents/lucion.co.uk"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"mail",
+			"$MOBILEVERSION",
+			"DEV",
+			"mail(",
+			"email(",
+			"email",
+			"console",
+			"executeFunctionByName",
+			"notes",
+			"get_site_details",
+			"console.",
+			"do_action",
+			"style.css",
+			"\\n",
+			"	",
+			"\\n",
+			"	",
+			"NGC.infowindow",
+			"NGC.map",
+			"sites",
+			"site",
+			"schema",
+			"autosuggest",
+			"utils",
+			"$USERID",
+			"replenish_search_table",
+			"exposed",
+			"<\\?[^php]",
+			"<\\?",
+			"\\<\\?",
+			"\\<\\?[^p]",
+			"<?[^p]",
+			"fulltext",
+			"contacts",
+			"users",
+			"tmpl",
+			"password",
+			"jobs",
+			"string",
+			"figurestring",
+			"upsert",
+			"timeout",
+			"boolean",
+			"sites",
+			"csvarray",
+			"$csvarray",
+			"\\[(\"Dec\")\\,(.*)\\,(.*)\\]",
+			"\\[(\"Dec\"),(.*),(.*)\\]",
+			"\\n[a-zA-Z,]",
+			"\\n.*\\,",
+			"\\n.*,",
+			"\\n.*",
+			"\\n\\w+\\,",
+			"\\|",
+			"\\,",
+			",",
+			"completed: ",
+			"required: ",
+			"&",
+			"<div class=\"month\">(\\w+)</div>",
+			"job",
+			"NGC",
+			"overview",
+			"os_map",
+			"breakdown",
+			"\\n",
+			"(\\w\\w)(\\d)(\\d)\\n",
+			"substations",
+			"latlng",
+			"/login",
+			"HTTP_HOST",
+			"http_host",
+			"var",
+			"confirmed",
+			"users",
+			"myschema",
+			"user",
+			"upsert",
+			"users",
+			"password",
+			"$_SERVER['HTTP_HOST']",
+			"http",
+			"closecursor",
+			"fetch",
+			"fetchOne",
+			"findOne",
+			"select *",
+			"mail",
+			"login",
+			"page=",
+			"?page=",
+			".php",
+			"analyst",
+			"items",
+			"\\n\\n\\n\\n(.*)\\n(.*)\\n(.*)\\n(.*)\\n(.*)\\n(.*)\\n(.*)\\n(.*)\\n(.*)",
+			"birthday",
+			"createWindow",
+			"jobs",
+			"sites",
+			"latlon",
+			"todeg",
+			"gridrefLetToNu",
+			"toDeg",
+			"sites",
+			"height",
+			"grid",
+			".type",
+			"survey_item",
+			"view_job_notes",
+			"notes",
+			"001/house",
+			"image\":",
+			"sites",
+			"floorplans",
+			"analyses",
+			"analysese",
+			"height",
+			"sample",
+			"samples",
+			"(SELECT",
+			"records",
+			"comments",
+			"analys",
+			"analy",
+			"asbestos_type",
+			"records",
+			"sample",
+			"buildings"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"],\\n['",
+			"', ",
+			"]\\n[",
+			"',\\n'",
+			"', '",
+			"NG.map.infowindow",
+			"NG.map.el",
+			"$csv",
+			",\\n",
+			"actual: ",
+			"planned: ",
+			"&amp;",
+			"<div class=\"month\">\\1<br />required: 310<br />completed: 0</div>",
+			"progress_map",
+			" ",
+			"'\\1\\200\\300',\\n",
+			"\\1\\200\\300\\n",
+			"register",
+			"\n	array(\n		'hazard'					=> '\\1',\n		'severity'					=> \\2,\n		'risk_cause'				=> '\\3',\n		'probability'				=> \\4,\n		'risk_factor'				=> \\5,\n		'preventative_action'		=> '\\6',\n		'personell_exposed'			=> '\\7',\n		'ppe'						=> '\\8',\n		'residual_risk'				=> '\\9',\n		'survey'					=> 1,\n		'air_test'					=> 0\n	),",
+			"\n	array(\n		'hazard'					=> '\\1',\n		'severity'					=> \\2,\n		'risk_cause'				=> '\\3',\n		'probability'				=> \\4,\n		'risk_factor'				=> \\5,\n		'preventative_action'		=> '\\6',\n		'personell_exposed'			=> '\\7',\n		'ppe'						=> '\\8',\n		'residual_risk'				=> '\\9',\n		'survey'					=> 0,\n		'air_test'					=> 0\n	),",
+			"\n\n\n\n	array(\n		'hazard'					=> '\\1',\n		'severity'					=> \\2,\n		'risk_cause'				=> '\\3',\n		'probability'				=> \\4,\n		'risk_factor'				=> \\5,\n		'preventative_action'		=> '\\6',\n		'personell_exposed'			=> '\\7',\n		'ppe'						=> '\\8',\n		'residual_risk'				=> '\\9',\n		'survey'					=> 0,\n		'air_test'					=> 0\n	),",
+			"\\tarray(\\n'hazard'					=> '\\1',\\n		'severity'					=> 2,\\n		'risk_cause'				=> '\\2',\n		'probability'				=> 2,\n		'risk_factor'				=> 4,\n		'preventative_action'		=> 'Keep route to airlock clear and free from obstructions.',\n		'personell_exposed'			=> 'Site',\n		'ppe'						=> 'Wear PPE/RPE in enclosure.',\n		'residual_risk'				=> 'Low',\n		'survey'					=> 0,\n		'air_test'					=> 1\n	),",
+			"\"record\"",
+			"\\n",
+			"$row['job']",
+			"$search",
+			"<p><img src=\"http://lucion.co.uk.local/print/templates/",
+			"<p><img",
+			"/></p>",
+			"<img src=\"./",
+			"\" />\\n<img src=\"",
+			"url('/gfx/16x16/file_extension",
+			".ext_\\1\\t\\t{background-image: url('file_extension_\\1.png');}",
+			".ext_\\1\\t{background-image: url('file_extension_\\1.png');}",
+			"file_extension_\\1.png');}\\n.ext_\\1\\t{background-image: url('",
+			"');}\\n.ext_\\1\\t{background-image: url('",
+			"');}\\n.ext_\\1 {background-image: url('",
+			"');\\n\\1",
+			"",
+			"${v.\\1 || 'na'}",
+			".icon32.icon_invoice",
+			".icon32.icon_",
+			".icon16.icon_",
+			"|",
+			"",
+			".-$1 {background-image:url('./16x16/$1.png');}\\n",
+			".-$1 {background-image:url('./16x16/$1.png');}",
+			"records",
+			"view_record_analyses",
+			"form_samples",
+			"sample_id",
+			"job_sample_info",
+			"form_samples",
+			"onrecordsload",
+			"NG.records",
+			"NG.analyses",
+			"NG.samples",
+			", ",
+			"array( 'na' => 'N/A', 'n' => 'N', 'y' => 'Y' )",
+			"array( 'na' => 'N/A', 'n' => 'N', 'y' => 'Y' ),",
+			"array( 'na' => 'N/A', 'n' => 'N', 'y' => 'Y')",
+			"form_record",
+			"item",
+			"form_site_finder",
+			"NG.site_finder",
+			"),\\n(",
+			"",
+			"job_ids",
+			"NG.jobs",
+			"NG.sites",
+			"contract",
+			"$contract_ids",
+			"@todo\\t",
+			"@TODO\\t",
+			"@TOD\\t",
+			"/**\\n",
+			"/*\n/**\n",
+			"/*\n"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/home/david/Documents/svgfloorplans.com/floorplan.svg",
+					"settings":
+					{
+						"buffer_size": 229,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								154,
+								154
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/david/Documents/svgfloorplans.com/index.html",
+					"settings":
+					{
+						"buffer_size": 1349,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 156.0,
+	"status_bar_visible": true
+}

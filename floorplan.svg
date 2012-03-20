@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+	<!-- Patterns and Items -->
+	<defs>
+		<!-- Hatch 1 - diagonal lines \ -->
+		<pattern id="hatch001" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+			<rect x="0" y="0" height="10" width="10" style="fill: #DDDDDD;" />
+			<line x1="10" y1="10" x2="0" y2="0" stroke="999999" stroke-width="1" />
+		</pattern>
+		<!-- Hatch 2 - diagonal lines / -->
+		<pattern id="hatch002" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+			<rect x="0" y="0" height="10" width="10" style="fill: #DDDDDD;" />
+			<line x1="0" y1="10" x2="10" y2="0" stroke="999999" stroke-width="1" />
+		</pattern>
+		<!-- Hatch 3 - cross hatch X-->
+		<pattern id="hatch003" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+			<rect x="0" y="0" height="10" width="10" style="fill: #DDDDDD;" />
+			<line x1="0" y1="10" x2="10" y2="0" stroke="999999" stroke-width="1" />
+			<line x1="10" y1="10" x2="0" y2="0" stroke="999999" stroke-width="1" />
+		</pattern>
+		<!-- Hatch 4 - dots -->
+		<pattern id="hatch004" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+			<rect x="0" y="0" height="6" width="6" style="fill: #DDDDDD;" />
+			<circle cx="3" cy="3" r="1" fill="#999999"/>
+		</pattern>
+		<!-- Hatch 5 - grid # -->
+		<pattern id="hatch005" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+			<rect x="0" y="0" height="10" width="10" style="fill: #DDDDDD;" />
+			<line x1="0" y1="0" x2="0" y2="10" stroke="999999" stroke-width="1" />
+			<line x1="0" y1="0" x2="10" y2="0" stroke="999999" stroke-width="1" />
+		</pattern>
+		<!-- A door -->
+		<g id="item001">
+			<path d="M0,30 a30,30 0 0,0 30,-30 L0,0" fill="DDDDDD" fill-opacity="0.5" stroke="000000" stroke-width="2" stroke-dasharray="4, 4" />
+			<line x1="0" y1="0" x2="30" y2="0" stroke="333333" stroke-width="4" stroke-linecap="round" />
+		</g>
+		<!-- Asbestos (centered) -->
+		<g id="asbestos001">
+			<rect x="-15" y="-15" height="30" width="30" style="fill: #ABCDEF;" stroke="000000" stroke-width="1" />
+		</g>
+		<!-- Arrowhead -->
+		<marker id="arrowhead001" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto">
+			<path d="M0,0 L10,5 L 0,10 z" fill="333333" />
+		</marker>
+	</defs>
+
+
+
+
+
+
+	<!-- The sketch -->
+	<g id="sketch">	
+		<!-- I'm not entirely how to arrange the layers etc... depends on the way it ill be used / edited -->
+
+		<!-- A tracing image -->
+		<image x="20" y="300" width="400px" height="400px" xlink:href="./trace.gif">
+			<title>My image</title>
+		</image>
+		<!-- Ground Fills -->
+		<g id="fills">
+			<polygon points="20,20 200,20 200,160 150,160 150,60 20,60" style="fill: url(#hatch004); fill-rule: nonzero;"/>
+		</g>
+		<!-- Walls & Doors-->
+		<g id="walls" stroke="333333" stroke-width="4" stroke-linecap="square" stroke-linejoin="miter" fill="none">
+			<path d="M20,20 L200,20 L200,160 L190,160" />
+			<path d="M160,160 L150,160 L150,60 L130,60 L130,180" />
+			<!-- With <use> instead of x and y, translate is a better fit (otherwise the "centre point" is wrong for scale & rotate) -->
+			<use xlink:href="#item001" transform="translate(250,250)" />
+			<use xlink:href="#item001" transform="translate(200,240)" />
+			<use xlink:href="#item001" transform="translate(200,220) scale(1, -1)" />
+			<use xlink:href="#item001" transform="translate(160,160) rotate(90) scale(1,-1)" />
+			<!-- Asbestos symbols are centered, proof: -->
+			<line x1="350" y1="0"  x2="350" y2="500" stroke-width="1" />
+			<line x1="0" y1="350"  x2="500" y2="350" stroke-width="1" />
+			<use class="item" xlink:href="#asbestos001" transform="translate(350,350)" />
+			<!-- Line with an arrowhead -->
+			<path d="M500,200 L300,200 L200,100" stroke-width="2" marker-end="url(#arrowhead001)"  />
+			<!-- Window? (to be edited like a regular path) -->
+			<path d="M400,100 L460,100 L500,140" />
+			<path d="M400,100 L460,100 L500,140" stroke-width="2" stroke="FFFFFF" />
+		</g>
+
+		<!-- A label -->
+		<text x="400" y="50" font-family="sans-serif" font-size="12" fill="#000000" text-anchor="middle">Some label</text>
+
+		<!-- I want this with a WHITE outline / glow... ala: http://svg-wow.org/blog/2009/10/04/chiseled/-->
+		<filter id = "i1" width = "150%" height = "150%">
+			<feOffset result = "offOut" in = "SourceAlpha" dx = "0" dy = "0"/>
+			<feGaussianBlur result = "blurOut" in = "offOut" stdDeviation = "2"/>
+			<feBlend in = "SourceGraphic" in2 = "blurOut" mode = "normal"/>
+		</filter>
+		<text x="20" y="40" style="font-family: Arial; font-size: 34; fill: #FFFFFF;" filter="url(#i1)">Readable labels with filters?</text>
+
+	</g>
+</svg>

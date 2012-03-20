@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery SVG Floorplan creator</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://keith-wood.name/js/jquery.svg.js"></script>
+	<script type="text/javascript" src="http://keith-wood.name/js/jquery.svgdom.js"></script>
+	<script type="text/javascript" src="./svgfloorplans.js"></script>
+	<style type="text/css">@import "http://keith-wood.name/css/jquery.svg.css";</style>
+	<style type="text/css">
+		/* Prevent the cursor going screwy by disabling selections */
+			body {-webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none;}
+		/* The toolbar */
+			#toolbar	{}
+			.tool		{}
+			.tool button	{width: 60px; height: 60px;}
+
+
+
+
+		#editor {position: relative; width: 500px; height: 500px;}
+		#svggrid,
+		#svgworkspace {position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
+	</style>
+</head>
+<body>
+
+	
+	<div id="toolbar">
+		<div class="tool">
+			<button>pointer</button>
+		</div>
+		<div class="tool labels">
+			<input type="checkbox" checked="checked" />
+			<button>Labels</button>
+		</div>
+		<div class="tool arrows">
+			<input type="checkbox" checked="checked" />
+			<button>Arrows</button>
+		</div>
+		<div class="tool asbestos">
+			<input type="checkbox" checked="checked" />
+			<button>Asbestos</button>
+		</div>
+		<div class="tool items">
+			<input type="checkbox" checked="checked" />
+			<button>Items</button>
+		</div>
+		<div class="tool walls">
+			<input type="checkbox" checked="checked" />
+			<button>Walls</button>
+		</div>
+		<div class="tool floors">
+			<input type="checkbox" checked="checked" />
+			<button>Floors</button>
+		</div>
+		<div class="tool images">
+			<input type="checkbox" checked="checked" />
+			<button>Images</button>
+		</div>
+	</div>
+
+	<!-- The editor -->
+	<div id="editor">
+		<!-- BG grid -->
+		<div id="svggrid"></div>
+		<!-- SVG workspace -->
+		<div id="svgworkspace"></div>
+	</div>
+
+
+
+	<!-- Moving stuff -->
+	<h2>How to move an item</h2>
+	<pre>
+// Reference the SVG object
+var svg = $('#svgworkspace').svg('get');
+// Grab the second item in the walls group (should be a door)
+var item = $('#walls use:eq(1)', svg.root());
+// Move it
+item.attr('transform', 'translate(220,300)');
+	</pre>
+
+	<!-- HTML -->
+	<h2>How to use an SVG in HTML (for print)</h2>
+	<p>I need to look at the &lt;svg /&gt; containers properties viewBox &amp; preserveAspectRatio - possibly settings them to:</p>
+	<pre>
+viewBox="YMIN XMIN YMAX XMAX"
+preserveAspectRatio="xMidYMid meet"
+	</pre>
+	<p>Maybe I should change these values when we save / load?</p>
+	<object type="image/svg+xml" width="200" height="200" data="./floorplan.svg">
+		<span/>
+	</object>
+
+
+
+</body>
+</html>
