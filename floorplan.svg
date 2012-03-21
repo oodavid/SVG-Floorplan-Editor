@@ -48,7 +48,7 @@
 	<g id="sketch">
 		<!-- Layer: Images -->
 		<g id="images">
-			<image class="image" x="20" y="300" width="400px" height="400px" xlink:href="./trace.gif"></image>
+			<image transform="translate(20,300)" class="image" width="400px" height="400px" xlink:href="./trace.gif"></image>
 		</g>
 		<!-- Layer: Floors / Fills -->
 		<g id="floors" fill-rule="nonzero">
@@ -75,16 +75,16 @@
 		</g>
 		<!-- Layer: Arrows -->
 		<g id="arrows" stroke="333333" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" fill="none">
-			<path d="M500,200 L300,200 L200,100" marker-end="url(#arrowhead001)"  />
+			<path transform="translate(500,200)" d="M0,0 l-200,0 l-100,-100" marker-end="url(#arrowhead001)"  />
 		</g>
 		<!-- Layer: Labels -->
 		<g id="labels" font-family="sans-serif" font-size="12" fill="#000000" text-anchor="middle">
-			<text x="400" y="50">Some label</text>
+			<text transform="translate(400,50)">Some label</text>
 		</g>
 	</g>
 
 	<!-- This should be added and removed programmatically for our editor -->
-	<g id="editor" stroke="#F07746" stroke-width="2" fill="#F07746" fill-opacity="0.3">
+	<g id="editor" stroke="#F07746" stroke-width="2" fill="none">
 		<style type="text/css">
 			<![CDATA[
 				#sketch image:hover			{opacity:.6;}
@@ -100,7 +100,7 @@
 		<rect x="100" y="150" height="200" width="120" />
 		<!-- An object selection-->
 		<g>
-			<rect x="300" y="150" height="200" width="120" fill="transparent" stroke-dasharray="2 2" />
+			<rect x="300" y="150" height="200" width="120" stroke-dasharray="2 2" />
 			<g transform="translate(310,160)">
 				<line x1="-5" y1="-5" x2="5" y2="5" />
 				<line x1="-5" y1="5" x2="5" y2="-5" />

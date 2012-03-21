@@ -68,6 +68,30 @@ FP.delegates.mouseUp = function(e){
 	console.log('mouseup - if it\'s quick, call it a click?');
 };
 
+
+
+
+
+
+/*
+
+	// Set the coords
+	FP.mouse.x = e.pageX - $(this).offset().left;
+	FP.mouse.y = e.pageY - $(this).offset().top;
+	// Apply the snapping
+	FP.mouse.x = Math.round(FP.mouse.x / FP.snaplevel) * FP.snaplevel;
+	FP.mouse.y = Math.round(FP.mouse.y / FP.snaplevel) * FP.snaplevel;
+	// Just log them for now
+	var svg = $('#svg_bg').svg('get');
+	$('text', svg.root()).text(JSON.stringify(FP.mouse));
+	// Do we have an object?
+	if(FP.currentObject){
+		$(FP.currentObject).attr('x2', FP.mouse.x);
+		$(FP.currentObject).attr('y2', FP.mouse.y);
+	}
+	
+*/
+
 /***************** Selection *****************/
 
 FP.selection = {};
@@ -154,133 +178,216 @@ FP.tools.toggle = function(){
 	// Toggles a layer
 };
 
+/***************** Transforms ****************/
+
+FP.transforms = {};
+FP.transforms.setDefinition = function(el, definition, def){
+	// Rebuild the attribute here
+	var newAttr = {};
+	// Populate that ^ with the current attribute definitions
+	el = $(el);
+	var transform = el.attr('transform');
+	if(transform){
+		var regex = /(translate|scale|rotate)\(([^\)]*)\)/g;
+		while(m = regex.exec(transform)){
+			newAttr[m[1]] = m[2];
+		}
+	}
+	// Add the new attribute part 
+	switch(definition){
+		case "translate":
+		case "scale":
+			newAttr[definition] = def.x + ',' + def.y;
+			break;
+		case "rotate":
+			newAttr[definition] = def.deg;
+			break;
+	}
+	// Rebuild into a string, the order must ALWAYS be: translate(x,y) rotate(deg) scale(x,y)
+	var attrStr = '';
+	$.each(['translate', 'rotate', 'scale'], function(k, v){
+		if(newAttr[v]){
+			attrStr += v + '(' + newAttr[v] + ') ';
+		}
+	});
+	attrStr = $.trim(attrStr);
+	// Apply the new attribute
+	el.attr('transform', attrStr);
+};
+FP.transforms.getDefinition = function(el, definition){
+	el = $(el);
+	// Grab the transform attribute
+	var transform = el.attr('transform');
+	// Which definition?
+	switch(definition){
+		case "translate":
+		case "scale":
+			// Defaults for translate AND scale
+			var values = (definition == 'translate') ? { x: 0, y: 0 } : { x: 1, y: 1 };
+			// Pull out the actual value
+			if(transform){
+				// Match it
+				var regex = new RegExp(definition + "\\((-?\\d*),(-?\\d*)\\)", "i");
+				var translate = transform.match(regex);
+				if(translate){
+					// Update
+					values.x = parseFloat(translate[1], 10);
+					values.y = parseFloat(translate[2], 10);
+				}
+			}
+			return values;
+		case "rotate":
+			// Defaults:
+			var values = { deg: 0 };
+			if(transform){
+				// Match it
+				var regex = /rotate\((-?\d*)\)/i;
+				var rotate = transform.match(regex);
+				if(rotate){
+					// Update
+					values.deg = parseFloat(rotate[1], 10);
+				}
+			}
+			return values;
+	}
+};
+
+/***************** ?????????? ****************/
+
+console.warn('not sure where this stuff lives yet - selection makes sense?');
+FP.move = function(el, dx, dy){
+	// Get the transform > translate definition
+	var def = FP.transforms.getDefinition(el, 'translate');
+	// Update them
+	def.x += dx;
+	def.y += dy;
+	// Set the transform > translate value
+	FP.transforms.setDefinition(el, 'translate', def);
+};
+FP.flip = function(el, dir){
+	// Get the transform > scale definition
+	var def = FP.transforms.getDefinition(el, 'scale');
+	// Update them
+	if(dir == "x-axis"){
+		def.x *= -1;
+	} else {
+		def.y *= -1;
+	}
+	// Set the transform > scale value
+	FP.transforms.setDefinition(el, 'scale', def);
+};
+FP.rotate = function(el, ddeg){
+	// Get the transform > rotate definition
+	var def = FP.transforms.getDefinition(el, 'rotate');
+	// Update them
+	def.deg += ddeg;
+	// Set the transform > rotate value
+	FP.transforms.setDefinition(el, 'rotate', def);
+};
+
+
+
+
+
+
+
+
+
+FP.tests = {};
+FP.tests.selectRandomElement = function(){
+	// Test - Make a random selection
+	var svg = $('#svg_source').svg('get');
+	var all_items = $('#sketch image, #sketch path, #sketch use, #sketch text', svg.root());
+	// Add a random one to the selection
+	FP.selection.add(all_items[Math.floor(Math.random()*all_items.length)]);
+};
+FP.tests.selectionMove = function(dx, dy){
+	// Loop the selection and move them
+	$.each(FP.selection.data, function(k,v){
+		FP.move(v, dx, dy);
+	});
+	// Redraw the selection
+	FP.selection.redraw();
+};
+FP.tests.selectionFlip = function(dir){
+	// Loop the selection and move them
+	$.each(FP.selection.data, function(k,v){
+		FP.flip(v, dir);
+	});
+	// Redraw the selection
+	FP.selection.redraw();
+};
+FP.tests.selectionRotate = function(deg){
+	// Loop the selection and move them
+	$.each(FP.selection.data, function(k,v){
+		FP.rotate(v, deg);
+	});
+	// Redraw the selection
+	FP.selection.redraw();
+};
+FP.tests.addItem = function(id){
+	// Add the item to the stage...
+};
+FP.tests.deleteRandomItem = function(){
+	// Pick out a random item and delete it
+	// Take care of selections
+};
+
+
+
+
+
+
+
+
 
 
 /*
- * Moving stuff...
- *
- * We need to deal with each of the different objects individually:
- *
- *		image, text
- *			x, y
- *		path
- *			each of the d > M and L value-pairs
- *		use
- *			
- */
-console.warn('not sure where this stuff lives yet - selection makes sense?');
-FP.move = function(el, dx, dy){
-	el = $(el);
-	switch(el[0].nodeName){
+FP.getBounds = function(el){
+	$el = $(el);
+	// Our properties object - x, y, left, right, top, bottom, width, height
+	var props = {};
+	// Grab the centre-point (x and y)
+	switch(el.nodeName){
 		case "image":
 		case "text":
-			// Just the x and y attributes
-			var x = parseFloat(el.attr('x'), 10) + dx;
-			var y = parseFloat(el.attr('y'), 10) + dx;
-			el.attr('x', x);
-			el.attr('y', y);
+			// Pretty simple
+			props.x = parseFloat($el.attr('x'), 10);
+			props.y = parseFloat($el.attr('y'), 10);
 			break;
 		case "path":
 		case "use":
-			// Transform attribute
-			var transform = el.attr('transform');
-			if(transform){
-				// Pull out the translate(x,y) part
-				var regex = /translate\((\-?\d*),(\-?\d*)\)/i;
-				var translate = transform.match(regex);
-				if(translate){
-					// Update the coords
-					var x = parseFloat(translate[1], 10) + dx;
-					var y = parseFloat(translate[2], 10) + dy;
-					translate = "translate(" + x + "," + y + ")";
-					// Tweak the attribute
-					transform = transform.replace(regex, translate);
-				} else {
-					// Add the translate part
-					transform += " translate(" + dx + "," + dy + ")";
-				}
-			} else {
-				// Set the attribute
-				transform = "translate(" + dx + "," + dy + ")";
-			}
-			// Apply the attribute
-			el.attr('transform', transform);
+			// Look at the transform > translate definition
+			var tmp = FP.getTransform($el, 'translate');
+			props.x = tmp.x;
+			props.y = tmp.y;
 			break;
 	}
-};
-FP.flip = function(el, dir){
-	el = $(el);
-	switch(el[0].nodeName){
-		case "use":
-			// Transform attribute
-			var transform = el.attr('transform');
-			if(transform){
-				// Pull out the scale(x,y) part
-				var regex = /scale\((\-?\d*),(\-?\d*)\)/i;
-				var scale = transform.match(regex);
-				if(scale){
-					// Update the coords
-					var x = parseFloat(scale[1], 10);
-					var y = parseFloat(scale[2], 10);
-					if(dir == "x-axis"){
-						x *= -1;
-					} else {
-						y *= -1;
-					}
-					scale = "scale(" + x + "," + y + ")";
-					// Tweak the attribute
-					transform = transform.replace(regex, scale);
-				} else {
-					// Add the scale part
-					if(dir == "x-axis"){
-						transform += " scale(-1, 1)";
-					} else {
-						transform += " scale(1, -1)";
-					}
-				}
-			} else {
-				// Set the attribute
-				if(dir == "x-axis"){
-					transform = "scale(-1, 1)";
-				} else {
-					transform = "scale(1, -1)";
-				}
-			}
-			// Apply the attribute
-			el.attr('transform', transform);
-			break;
+	// And the bounds
+	if(el.nodeName == "path"){
+		// 
 	}
+	// Left, Right, Top, Bottom, Width, Height
+	var bounds = v.getBoundingClientRect();
 };
-FP.rotate = function(el, ddeg){
-	el = $(el);
-	switch(el[0].nodeName){
-		case "use":
-			// Transform attribute
-			var transform = el.attr('transform');
-			if(transform){
-				// Pull out the rotate(deg) part
-				var regex = /rotate\((\-?\d*)\)/i;
-				var rotate = transform.match(regex);
-				if(rotate){
-					// Update the coords
-					var deg = parseFloat(rotate[1], 10);
-					deg += ddeg;
-					rotate = "rotate(" + deg + ")";
-					// Tweak the attribute
-					transform = transform.replace(regex, rotate);
-				} else {
-					// Add the rotate part
-					transform += "rotate(" + ddeg + ")";
-				}
-			} else {
-				// Set the attribute
-				transform = "rotate(" + ddeg + ")";
-			}
-			// Apply the attribute
-			el.attr('transform', transform);
-			break;
-	}
-};
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /***************** Utilities *****************/
 
@@ -322,31 +429,6 @@ FP.utils.path_to_array = function(path){
 	// Apply the new attribute
 	el.attr('d', d);
 };
-
-
-
-FP.runtest = function(){
-	// Test - Select a LOAD of things (everything?)
-	var svg = $('#svg_source').svg('get');
-	var items = $('#images image, #floors path, #items use, #walls path, #arrows path, #labels text, #asbestos use', svg.root());
-	FP.selection.add(items);
-	// Loop the selection and move them
-	// console.log('Does FP.selection.applyFunction have any use? Maybe modify if to take parameters to pass on...');
-	$.each(FP.selection.data, function(k,v){
-		// Move in a random direction
-		var x = 20 * (Math.round((Math.random() * 2) - 1));
-		var y = 20 * (Math.round((Math.random() * 2) - 1));
-		// FP.move(v, x, y);
-		// FP.flip(v, 'x-axis');
-		// FP.flip(v, 'y-axis');
-		FP.rotate(v, 45);
-	});
-	// Redraw the selection
-	FP.selection.redraw();
-};
-
-
-
 
 
 

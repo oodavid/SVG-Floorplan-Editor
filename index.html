@@ -83,7 +83,40 @@
 		<div id="svg_source"></div>
 	</div>
 
-	<button onclick="FP.runtest();">runtest</button>
+	<h3>Simple tests...</h3>
+	<ul>
+		<li>
+			<button onclick="FP.tests.selectRandomElement();">add a random element to the selection</button>
+			<button onclick="FP.selection.clear();">clear selection</button>
+		</li>
+		<li>
+			<button onclick="FP.tests.selectionMove(10, 0);">move selection right</button>
+			<button onclick="FP.tests.selectionMove(-10, 0);">move selection left</button>
+			<button onclick="FP.tests.selectionMove(0, -10);">move selection up</button>
+			<button onclick="FP.tests.selectionMove(0, 10);">move selection down</button>
+		</li>
+		<li>
+			<button onclick="FP.tests.selectionFlip('x-axis');">flip on x-axis</button>
+			<button onclick="FP.tests.selectionFlip('y-axis');">flip on y-axis</button>
+		</li>
+		<li>
+			<button onclick="FP.tests.selectionRotate(45);">rotate clockwise</button>
+			<button onclick="FP.tests.selectionRotate(-45);">rotate anti-clockwise</button>
+		</li>
+		<li>
+			<button onclick="FP.tests.addItem('item001');">add a door</button>
+			<button onclick="FP.tests.addItem('asbestos001');">add an asbestos icon</button>
+			<button onclick="FP.tests.deleteRandomItem();">delete a random element</button>
+		</li>
+		<li>
+			<button onclick="FP.tests.addItem('item001');">select just a path?</button>
+			<button onclick="FP.tests.addItem('item001');">add a path</button>
+			<button onclick="FP.tests.addItem('asbestos001');">move a point within a path</button>
+			<button onclick="FP.tests.deleteRandomItem();">delete a point from a path</button>
+		</li>
+	</ul>
+
+	<!-- 
 
 	<div class="clear"></div>
 
@@ -107,9 +140,7 @@
 
 	<h1>Time log</h1>
 	<p>9hrs, 10hrs</p>
-
-
-	<!-- Moving stuff -->
+	
 	<h2>How to move an item</h2>
 	<pre>
 // Reference the SVG object
@@ -120,7 +151,6 @@ var item = $('#walls use:eq(1)', svg.root());
 item.attr('transform', 'translate(220,300)');
 	</pre>
 
-	<!-- HTML -->
 	<h2>How to use an SVG in HTML (for print)</h2>
 	<p>I need to look at the &lt;svg /&gt; containers properties viewBox &amp; preserveAspectRatio - possibly settings them to:</p>
 	<pre>
@@ -132,7 +162,7 @@ preserveAspectRatio="xMidYMid meet"
 		<span/>
 	</object>
 
-
+	-->
 
 </body>
 </html>
