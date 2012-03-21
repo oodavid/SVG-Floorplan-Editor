@@ -8,5 +8,4 @@
 		</pattern>
 	</defs>
 	<rect x="0" y="0" height="100%" width="100%" style="fill: url(#grid);" />
-	<text font-family="sans-serif" font-size="12" fill="#000000" dominant-baseline="hanging">v0.1</text>
 </svg>

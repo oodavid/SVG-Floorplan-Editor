@@ -1,12 +1,15 @@
 FP = {};
 // Settings
-FP.snaplevel	= 10;				// Snap-level 20px
-FP.currentObject = false;			// The "active" object
-FP.mouse		= { x: 0, y: 0 };	// Mouse coords (current)
-FP.mousedowned	= { x: 0, y: 0 };	// Mouse coords (when we mousedowned)
-
-
+FP.snaplevel = 10;		// Snap-level
+FP.mouse = {
+	button: false,			// Is the mouse button down?
+	fine: { x: 0, y: 0 },	// The EXACT mouse coordinates
+	snap: { x: 0, y: 0 },	// The mouse coordinates, with snapping
+	drop: { x: 0, y: 0 },	// The EXACT mouse coordinates when we last mousedowned OR mouseupped
+	drag: { x: 0, y: 0 },	// The distance from the drop coordinates, with snapping
+};
 FP.tool = 'pointer'; // The active tool
+
 
 
 // When you're ready
@@ -55,42 +58,64 @@ FP.delegates.keyDown = function(e){
 	}
 };
 FP.delegates.mouseMove = function(e){
+	// Position of the source element
+	var offset = $('#svg_source').offset();
+	// Calculate the relative coordinates
+	var x = e.pageX - offset.left;
+	var y = e.pageY - offset.top;
+	// Store the fine coords
+	FP.mouse.fine.x = x;
+	FP.mouse.fine.y = y;
+	// Snap and store the coords
+	FP.mouse.snap.x = Math.round(x / FP.snaplevel) * FP.snaplevel;
+	FP.mouse.snap.y = Math.round(y / FP.snaplevel) * FP.snaplevel;
+	// Re-calculate the drag distances
+	var dragx = x - FP.mouse.drop.x;
+	var dragy = y - FP.mouse.drop.y;
+	// Snap and store them
+	FP.mouse.drag.x = Math.round(dragx / FP.snaplevel) * FP.snaplevel;
+	FP.mouse.drag.y = Math.round(dragy / FP.snaplevel) * FP.snaplevel;
+	// Update the statusbar
+	FP.interface.updateStatus();
 	// Do stuff
-	console.log('mousemove');
+	console.log('delegate>mouseMove');
 };
 FP.delegates.mouseDown = function(e){
+	// Set the flag
+	FP.mouse.button = true;
+	// Store the drop coords
+	FP.mouse.drop.x = FP.mouse.fine.x;
+	FP.mouse.drop.y = FP.mouse.fine.y;
+	FP.mouse.drag.x = 0;
+	FP.mouse.drag.y = 0;
+	// Update the status
+	FP.interface.updateStatus();
 	// Take a look at the target...
-	console.log(e.target);
 	// Bubble up till we find: path, text, image, use...?
-	console.log('mousedown');
+	console.log('mousedown', e.target);
 };
 FP.delegates.mouseUp = function(e){
+	// Set the flag
+	FP.mouse.button = false;
+	// Store the drop coords
+	FP.mouse.drop.x = FP.mouse.fine.x;
+	FP.mouse.drop.y = FP.mouse.fine.y;
+	FP.mouse.drag.x = 0;
+	FP.mouse.drag.y = 0;
+	// Update the status
+	FP.interface.updateStatus();
+	// Now what?
 	console.log('mouseup - if it\'s quick, call it a click?');
 };
 
+/***************** Interface *****************/
 
-
-
-
-
-/*
-
-	// Set the coords
-	FP.mouse.x = e.pageX - $(this).offset().left;
-	FP.mouse.y = e.pageY - $(this).offset().top;
-	// Apply the snapping
-	FP.mouse.x = Math.round(FP.mouse.x / FP.snaplevel) * FP.snaplevel;
-	FP.mouse.y = Math.round(FP.mouse.y / FP.snaplevel) * FP.snaplevel;
-	// Just log them for now
-	var svg = $('#svg_bg').svg('get');
-	$('text', svg.root()).text(JSON.stringify(FP.mouse));
-	// Do we have an object?
-	if(FP.currentObject){
-		$(FP.currentObject).attr('x2', FP.mouse.x);
-		$(FP.currentObject).attr('y2', FP.mouse.y);
-	}
-	
-*/
+FP.interface = {};
+FP.interface.updateStatus = function(){
+	$('#snap').html(FP.mouse.snap.x + ',' + FP.mouse.snap.y);
+	$('#drag').html(FP.mouse.drag.x + ',' + FP.mouse.drag.y);
+	$('#button').html(FP.mouse.button ? '&#x26AB;' : '&#x26AA;');
+};
 
 /***************** Selection *****************/
 
