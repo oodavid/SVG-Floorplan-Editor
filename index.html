@@ -51,23 +51,6 @@
 				#status #snap,
 				#status #drag		{width: 100px;}
 				#status #button		{width: 10px;}
-
-
-
-		/* The toolbar * /
-			#toolbar	{width: 200px; float: left;}
-			.tool		{width: 80px; height: 48px; margin: 0 0 5px 0;}
-			.tool [type=checkbox]	{height: 48px;}
-			.tool button			{float: right; width: 48px; height: 48px; }
-			.tool button:hover,
-			.tool.active button		{background-color: #FFFFFF;}
-			.tool.active button		{}
-
-
-
-
-		#editor {position: relative; float: left; width: 800px; height: 600px;}
-		*/
 	</style>
 </head>
 <body>
@@ -129,59 +112,19 @@
 		</div>
 	</div>
 
+	<!-- Timelog
+		Mon 19th March - 9hrs
+		Tue 20th March - 10hrs
+		Wed 21th March - 8hrs
+		Thu 19th March - 4hrs (so far)
+	-->
 
 	<!--
 
-	<div id="toolbar">
-	</div>
-
-	
-	<div id="editor">
-		SVG BG (grid)
-	</div>
-
-
-	<!-- 
-
-	<div class="clear"></div>
-
-
-	<h1>TODO</h1>
-	<ol>
-		<li>Code layout for: pointer, text, arrow, asbestos, items, walls, floors, images</li>
-		<li>Code layout for: event routing - what are the events?</li>
-		<li>Code layout for: selections: add to selection (highlight), remove from selection (unhighlight), clear (aka remove all), apply (to entire selection)</li>
-		<li>Plan: minimum feature set, what to do today</li>
-		<li>Make the stage huge</li>
-		<li>Layer toggling (use display=&quot;none&quot;)</li>
-		<li>Pointer - Click to select one - activate correct &quot;tool&quot;</li>
-		<li>Pointer - Drag to select multiple - loop visible layers, find objects within bounds - if multiple, keep pointer active</li>
-		<li>Selection - drag to move (single or multiple) - DELETE to delete</li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-	</ol>
-
-	<h1>Time log</h1>
-	<p>9hrs, 10hrs</p>
-	
-	<h2>How to move an item</h2>
-	<pre>
-// Reference the SVG object
-var svg = $('#svg_source').svg('get');
-// Grab the second item in the walls group (should be a door)
-var item = $('#walls use:eq(1)', svg.root());
-// Move it
-item.attr('transform', 'translate(220,300)');
-	</pre>
-
 	<h2>How to use an SVG in HTML (for print)</h2>
 	<p>I need to look at the &lt;svg /&gt; containers properties viewBox &amp; preserveAspectRatio - possibly settings them to:</p>
-	<pre>
-viewBox="YMIN XMIN YMAX XMAX"
-preserveAspectRatio="xMidYMid meet"
-	</pre>
+	<pre>viewBox="YMIN XMIN YMAX XMAX"</pre>
+	<pre>preserveAspectRatio="xMidYMid meet"</pre>
 	<p>Maybe I should change these values when we save / load?</p>
 	<object type="image/svg+xml" width="200" height="200" data="./floorplan.svg">
 		<span/>

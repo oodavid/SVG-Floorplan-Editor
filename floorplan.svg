@@ -94,16 +94,15 @@
 				#sketch #asbestos use:hover	{opacity:.6;}
 				#sketch #arrows path:hover	{stroke: #F07746;}
 				#sketch #labels text:hover	{fill: #F07746;}
+				#sketch #labels text		{stroke: 1; stroke-dasharray: 2 2;}
 				#editor circle:hover		{fill: #F07746;}
 			]]>
 		</style>
 		<!-- Our "templates" -->
-		<g id="tmpl" display="none">
+		<g id="tmpl" stroke="#F07746" stroke-width="2" fill="none" >
 			<rect   id="mouseDrag"    x="100" y="150" height="200" width="120"  />
 			<rect   id="selectionBox" x="300" y="150" height="200" width="120" stroke-dasharray="2 2" />
-			<circle id="pointMid"     cx="260" cy="300" r="5" />
-			<circle id="pointStart"   cx="260" cy="300" r="5" />
-			<circle id="pointEnd"     cx="260" cy="300" r="5" />
+			<circle id="point" cx="0" cy="0" r="5" transform="translate(260,300)" />
 			<g id="pointCenter" transform="translate(310,160)">
 				<line x1="-5" y1="-5" x2="5" y2="5" />
 				<line x1="-5" y1="5" x2="5" y2="-5" />

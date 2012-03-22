@@ -132,7 +132,6 @@ FP.delegates.mouseMove = function(e){
 		FP.mouse.dragging = true;
 		// Event here
 		console.log('delegate>dragStart', FP.mouse.target, FP.mouse.targetcontext);
-		return;
 	}
 	// Are we dragging or just moving?
 	if(FP.mouse.dragging){
@@ -159,10 +158,10 @@ FP.delegates.mouseUp = function(e){
 /***************** Selection *****************/
 
 FP.selection = {};
-FP.selection.data = []; // A list of elements in the selection
+FP.selection.elements = []; // A list of elements in the selection
 FP.selection.clear = function(){
 	// Remove everything
-	FP.selection.data = [];
+	FP.selection.elements = [];
 	// Redraw
 	FP.selection.redraw();
 };
@@ -186,16 +185,16 @@ FP.selection.add_remove_toggle = function(elements, mode){
 	// Loop the elements
 	$.each(elements, function(k,v){
 		// Is it in the array?
-		var index = $.inArray(v, FP.selection.data);
+		var index = $.inArray(v, FP.selection.elements);
 		// Toggle?
 		if(mode == 'toggle'){
 			mode = (index == -1) ? 'add' : 'remove';
 		}
 		// Add or remove?
 		if(mode == 'add' && index == -1){
-			FP.selection.data.push(v);
+			FP.selection.elements.push(v);
 		} else if(mode == 'remove' && index != -1){
-			FP.selection.data.splice(index, 1);
+			FP.selection.elements.splice(index, 1);
 		}
 	});
 	// Redraw
@@ -208,21 +207,28 @@ FP.selection.redraw = function(){
 	var g			= $('#editor #ui', svg.root());
 	// Empty the UI
 	g.empty();
-	// Redraw the selection
-	$.each(FP.selection.data, function(k,v){
-		var bounds = v.getBoundingClientRect();
-		var x = bounds.left	- svgbounds.left	- 4;
-		var y = bounds.top	- svgbounds.top		- 4;
-		var w = bounds.width + 8;
-		var h = bounds.height + 8;
-		var r = svg.rect(g, x, y, w, h);	
-		// Link the selection to the object
-		$(r).data('original_object', v);
-	});
+	// If there is only one element selected and it's a path, use CONTROL POINTS
+	if(FP.selection.elements.length == 1 && FP.selection.elements[0].nodeName == 'path'){
+		// Use control points
+		v = FP.selection.elements[0];
+		console.log('CONTROL POINTS FOR: ' + $(v).attr('d') + ', CENTRE: ' + FP.transforms.getDefinition(v, 'translate'));
+	} else {
+		// Use a bounding box for each element
+		$.each(FP.selection.elements, function(k,v){
+			var bounds = v.getBoundingClientRect();
+			var x = bounds.left	- svgbounds.left	- 4;
+			var y = bounds.top	- svgbounds.top		- 4;
+			var w = bounds.width + 8;
+			var h = bounds.height + 8;
+			var r = svg.rect(g, x, y, w, h);
+			// Link the selection to the object
+			$(r).data('original_object', v);
+		});
+	}
 };
 FP.selection.applyFunction = function(f, redraw){
 	// Loop the elements and apply the function to them
-	$.each(FP.selection.data, function(k,v){
+	$.each(FP.selection.elements, function(k,v){
 		// Apply the function
 		f(v);
 	});
@@ -441,7 +447,7 @@ FP.tests.selectRandomElement = function(){
 };
 FP.tests.selectionMove = function(dx, dy){
 	// Loop the selection and move them
-	$.each(FP.selection.data, function(k,v){
+	$.each(FP.selection.elements, function(k,v){
 		FP.selection.transform.move(v, dx, dy);
 	});
 	// Redraw the selection
@@ -449,7 +455,7 @@ FP.tests.selectionMove = function(dx, dy){
 };
 FP.tests.selectionFlip = function(dir){
 	// Loop the selection and move them
-	$.each(FP.selection.data, function(k,v){
+	$.each(FP.selection.elements, function(k,v){
 		FP.selection.transform.flip(v, dir);
 	});
 	// Redraw the selection
@@ -457,18 +463,99 @@ FP.tests.selectionFlip = function(dir){
 };
 FP.tests.selectionRotate = function(deg){
 	// Loop the selection and move them
-	$.each(FP.selection.data, function(k,v){
+	$.each(FP.selection.elements, function(k,v){
 		FP.selection.transform.rotate(v, deg);
 	});
 	// Redraw the selection
 	FP.selection.redraw();
 };
-FP.tests.addItem = function(id){
-	// Add the item to the stage...
+FP.tests.addItem = function(){
+
+	// CREATE A DOOR
+
+	// Reference the SVG and parent <g>
+	var svg		= $('#svg_source').svg('get');
+	var parent	= $('#sketch #items', svg.root());
+	// Add the item and move it
+	var item = svg.use(parent, '#item001');
+	FP.transforms.setDefinition(item, 'translate', { x: 400, y: 400 });
+
+	// CREATE A PATH
+
+	// Reference the SVG and parent <g>
+	var svg		= $('#svg_source').svg('get');
+	var parent	= $('#sketch #floors', svg.root());
+	// Create the path and move it
+	var path = svg.createPath();
+	var path = svg.path(parent, path.move(0, 0).line(150, 30, true).line(30, 100, true), { fill: 'url(#hatch001)' });
+	FP.transforms.setDefinition(path, 'translate', { x: 400, y: 400 });
 };
 FP.tests.deleteRandomItem = function(){
 	// Pick out a random item and delete it
 	// Take care of selections
+};
+
+
+
+
+
+FP.paths = {};
+FP.paths.checkSelection = function(){
+	// Checks the selection to make sure we only have a single PATH selected
+	return true;
+};
+FP.paths.addPoint = function(){
+	// Only if we have a good selection
+	if(!FP.paths.checkSelection()){ return; }
+	// Add a point in a random position
+	// ...
+};
+FP.paths.deletePoint = function(){
+	// Only if we have a good selection
+	if(!FP.paths.checkSelection()){ return; }
+	// Pick a point
+	// Delete it
+};
+FP.paths.movePoint = function(){
+	// Only if we have a good selection
+	if(!FP.paths.checkSelection()){ return; }
+	// Pick a point
+	// Move it to a random position
+};
+FP.paths.deletePartialPaths = function(){
+	// Delete all paths that have an indecent amount of points
+};
+FP.paths.pathToPoints = function(){
+	// FUNCTIONALITY FROM THE OLD MOVE THINGIES - SHOWS HOW TO PARSE THE DATA :-)
+	// Path data attribute
+	var d = el.attr('d');
+	// Data is defined by a letter, followed by non-letters - break it into parts
+	var regex = /[a-z][^a-z]*/ig;
+	var segments = d.match(regex);
+	// Reset the data
+	var d = '';
+	// To pull out the numerical parts of M and L
+	var regex = /(M|L)[\s]*(\-?\d*)[\s\,]*(\-?\d*)/;
+	// Loop the segments and adjust them...
+	$.each(segments, function(k,v){
+		// First letter...
+		switch(v[0]){
+			case 'M':
+			case 'L':
+				// Update the coords
+				m=regex.exec(v);
+				var x = parseFloat(m[2], 10) + dx;
+				var y = parseFloat(m[3], 10) + dy;
+				// Add it
+				d += m[1] + x + "," + y;
+				break;
+			default:
+				// Keep it as-is
+				d += v;
+		}
+	});
+	// Apply the new attribute
+	el.attr('d', d);
 };
 
 
@@ -533,39 +620,6 @@ FP.utils = {};
 FP.utils.is_array = function(input){
 	// Returns true if the input is an array
 	return typeof(input)=='object' && (input.length != undefined);
-};
-FP.utils.path_to_array = function(path){
-	// Splits an SVG path into an array of points
-	// FUNCTIONALITY FROM THE OLD MOVE THINGIES - SHOWS HOW TO PARSE THE DATA :-)
-	// Path data attribute
-	var d = el.attr('d');
-	// Data is defined by a letter, followed by non-letters - break it into parts
-	var regex = /[a-z][^a-z]*/ig;
-	var segments = d.match(regex);
-	// Reset the data
-	var d = '';
-	// To pull out the numerical parts of M and L
-	var regex = /(M|L)[\s]*(\-?\d*)[\s\,]*(\-?\d*)/;
-	// Loop the segments and adjust them...
-	$.each(segments, function(k,v){
-		// First letter...
-		switch(v[0]){
-			case 'M':
-			case 'L':
-				// Update the coords
-				m=regex.exec(v);
-				var x = parseFloat(m[2], 10) + dx;
-				var y = parseFloat(m[3], 10) + dy;
-				// Add it
-				d += m[1] + x + "," + y;
-				break;
-			default:
-				// Keep it as-is
-				d += v;
-		}
-	});
-	// Apply the new attribute
-	el.attr('d', d);
 };
 
 
