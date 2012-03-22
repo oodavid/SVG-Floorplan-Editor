@@ -1,17 +1,7 @@
 FP = {};
 // Settings
 FP.snaplevel = 10;		// Snap-level
-FP.mouse = {
-	button: false,			// Is the mouse button down?
-	fine: { x: 0, y: 0 },	// The EXACT mouse coordinates
-	snap: { x: 0, y: 0 },	// The mouse coordinates, with snapping
-	drop: { x: 0, y: 0 },	// The EXACT mouse coordinates when we last mousedowned OR mouseupped
-	drag: { x: 0, y: 0 },	// The distance from the drop coordinates, with snapping
-};
-FP.tool = 'pointer'; // The active tool
-
-
-
+FP.tool = 'pointer';	// The active tool
 // When you're ready
 FP.init = function(e){
 	// Prepare the SVG elements
@@ -25,8 +15,65 @@ $(document).ready(FP.init);
 FP.load = function(){
 	// Start the delegates
 	FP.delegates.init();
+	// And the interface
+	FP.interface.init();
 };
- 
+
+/******************* Mouse *******************/
+
+FP.mouse = {
+	button: false,			// Is the mouse button down?
+	dragging: false,		// Are we dragging (ie, the drag coords have changed and the button is pressed)
+	target: false,			// The element that we mousedowned on (passed to click and drag events)
+	targetcontext: false,	// The context of that element (bg, sketch or ui)
+	fine: { x: 0, y: 0 },	// The EXACT mouse coordinates - not sure if this is actually used by anything...
+	snap: { x: 0, y: 0 },	// The mouse coordinates, with snapping
+	drop: { x: 0, y: 0 },	// The SNAP coordinates when we last mousedowned OR mouseupped
+	drag: { x: 0, y: 0 },	// The distance from the drop coordinates, with snapping
+};
+FP.mouse.setButton = function(flag, target, targetcontext){
+	// Set the flag
+	FP.mouse.button = flag;
+	// An extra flag to say that we're not (yet) dragging
+	FP.mouse.dragging = false;
+	// Do we have a target and targetcontext?
+	if(target && targetcontext){
+		FP.mouse.target			= target;
+		FP.mouse.targetcontext	= targetcontext;
+	} else {
+		FP.mouse.target			= false;
+		FP.mouse.targetcontext	= 'bg';
+	}
+	// Store the drop coords
+	FP.mouse.drop.x = FP.mouse.snap.x;
+	FP.mouse.drop.y = FP.mouse.snap.y;
+	FP.mouse.drag.x = 0;
+	FP.mouse.drag.y = 0;
+	// Update the status
+	FP.interface.updateStatus();
+};
+FP.mouse.recalculate = function(e){
+	// Position of the source element
+	var offset = $('#svg_source').offset();
+	// Calculate the relative coordinates
+	var x = e.pageX - offset.left;
+	var y = e.pageY - offset.top;
+	// Store the fine coords
+	FP.mouse.fine.x = x;
+	FP.mouse.fine.y = y;
+	// Snap and store the coords
+	FP.mouse.snap.x = Math.round(x / FP.snaplevel) * FP.snaplevel;
+	FP.mouse.snap.y = Math.round(y / FP.snaplevel) * FP.snaplevel;
+	// Re-calculate the drag distances
+	var dragx = x - FP.mouse.drop.x;
+	var dragy = y - FP.mouse.drop.y;
+	// Snap and store them
+	FP.mouse.drag.x = Math.round(dragx / FP.snaplevel) * FP.snaplevel;
+	FP.mouse.drag.y = Math.round(dragy / FP.snaplevel) * FP.snaplevel;
+	// Update the statusbar
+	FP.interface.updateStatus();
+};
+
 /***************** Delegates *****************/
 
 FP.delegates = {};
@@ -53,68 +100,60 @@ FP.delegates.keyDown = function(e){
 	// Match the keycode...
 	var key = FP.delegates.keys[e.keyCode];
 	if(key){
-		console.log(key);
+		console.log('delegate>key>' + key);
 		return false;
 	}
 };
-FP.delegates.mouseMove = function(e){
-	// Position of the source element
-	var offset = $('#svg_source').offset();
-	// Calculate the relative coordinates
-	var x = e.pageX - offset.left;
-	var y = e.pageY - offset.top;
-	// Store the fine coords
-	FP.mouse.fine.x = x;
-	FP.mouse.fine.y = y;
-	// Snap and store the coords
-	FP.mouse.snap.x = Math.round(x / FP.snaplevel) * FP.snaplevel;
-	FP.mouse.snap.y = Math.round(y / FP.snaplevel) * FP.snaplevel;
-	// Re-calculate the drag distances
-	var dragx = x - FP.mouse.drop.x;
-	var dragy = y - FP.mouse.drop.y;
-	// Snap and store them
-	FP.mouse.drag.x = Math.round(dragx / FP.snaplevel) * FP.snaplevel;
-	FP.mouse.drag.y = Math.round(dragy / FP.snaplevel) * FP.snaplevel;
-	// Update the statusbar
-	FP.interface.updateStatus();
-	// Do stuff
-	console.log('delegate>mouseMove');
-};
 FP.delegates.mouseDown = function(e){
-	// Set the flag
-	FP.mouse.button = true;
-	// Store the drop coords
-	FP.mouse.drop.x = FP.mouse.fine.x;
-	FP.mouse.drop.y = FP.mouse.fine.y;
-	FP.mouse.drag.x = 0;
-	FP.mouse.drag.y = 0;
-	// Update the status
-	FP.interface.updateStatus();
-	// Take a look at the target...
-	// Bubble up till we find: path, text, image, use...?
-	console.log('mousedown', e.target);
+	// Left-Button only
+	if(e.which != 1) { return; }
+	// Figure out the element we mouseDowned on - we need it for clicks and dragging
+	//  - reconcile <use> elements - The SVG DOM can return an SVGElementInstance "shadow trees" instead - we can find the actual <use> element with correspondingUseElement :-)
+	var target = e.target.correspondingUseElement || e.target;
+	// Are we clicking a SKETCH or UI element? (false = BG)
+	var targetcontext = $(target).closest('#sketch, #ui').attr('id') || false;
+	// Set the button flag and store the target / context
+	FP.mouse.setButton(true, target, targetcontext);
+	// NOTA BENE - No events here as we don't know if this mouseDown represents a click or a start of a drag etc...
+};
+FP.delegates.mouseMove = function(e){
+	// Store the old mouse positions (so we can check for changes)
+	var oldDragX = FP.mouse.drag.x;
+	var oldDragY = FP.mouse.drag.y;
+	// Recalculate the mouse properties
+	FP.mouse.recalculate(e);
+	// We only need to do stuff when the mouse.drag changes
+	if(FP.mouse.drag.x == oldDragX && FP.mouse.drag.y == oldDragY){
+		return;
+	}
+	// DragStart? - button down + not already dragging
+	if(FP.mouse.button && !FP.mouse.dragging){
+		// Save the flag
+		FP.mouse.dragging = true;
+		// Event here
+		console.log('delegate>dragStart', FP.mouse.target, FP.mouse.targetcontext);
+		return;
+	}
+	// Are we dragging or just moving?
+	if(FP.mouse.dragging){
+		console.log('delegate>drag', FP.mouse.target, FP.mouse.targetcontext);
+	} else {
+		console.log('delegate>mouseMove');
+	}
 };
 FP.delegates.mouseUp = function(e){
-	// Set the flag
-	FP.mouse.button = false;
-	// Store the drop coords
-	FP.mouse.drop.x = FP.mouse.fine.x;
-	FP.mouse.drop.y = FP.mouse.fine.y;
-	FP.mouse.drag.x = 0;
-	FP.mouse.drag.y = 0;
-	// Update the status
-	FP.interface.updateStatus();
-	// Now what?
-	console.log('mouseup - if it\'s quick, call it a click?');
-};
-
-/***************** Interface *****************/
-
-FP.interface = {};
-FP.interface.updateStatus = function(){
-	$('#snap').html(FP.mouse.snap.x + ',' + FP.mouse.snap.y);
-	$('#drag').html(FP.mouse.drag.x + ',' + FP.mouse.drag.y);
-	$('#button').html(FP.mouse.button ? '&#x26AB;' : '&#x26AA;');
+	// Left-Button only
+	if(e.which != 1) { return; }
+	// Are we clicking or dragging?
+	if(FP.mouse.dragging){
+		console.log('delegate>dragEnd', FP.mouse.target, FP.mouse.targetcontext);
+	} else {
+		// Take a look at the target...
+		// Bubble up till we find: path, text, image, use...?
+		console.log('delegate>click', FP.mouse.target, FP.mouse.targetcontext);
+	}
+	// Set the button flag - We do this at the END so we can still access the mouse properties
+	FP.mouse.setButton(false);
 };
 
 /***************** Selection *****************/
@@ -166,9 +205,9 @@ FP.selection.redraw = function(){
 	// Reference the SVG, editor group and SVG bounds
 	var svg			= $('#svg_source').svg('get');
 	var svgbounds	= $('#svg_source')[0].getBoundingClientRect();
-	var g			= $('#editor', svg.root());
-	// Empty the rects
-	g.find('rect, g, circle').remove();
+	var g			= $('#editor #ui', svg.root());
+	// Empty the UI
+	g.empty();
 	// Redraw the selection
 	$.each(FP.selection.data, function(k,v){
 		var bounds = v.getBoundingClientRect();
@@ -176,7 +215,7 @@ FP.selection.redraw = function(){
 		var y = bounds.top	- svgbounds.top		- 4;
 		var w = bounds.width + 8;
 		var h = bounds.height + 8;
-		var r = svg.rect(g, x, y, w, h);
+		var r = svg.rect(g, x, y, w, h);	
 		// Link the selection to the object
 		$(r).data('original_object', v);
 	});
@@ -193,123 +232,197 @@ FP.selection.applyFunction = function(f, redraw){
 	}
 };
 
+	/************ Selection > Transform **********/
+
+	// Applies transforms to the selected elements
+
+	FP.selection.transform = {};
+	FP.selection.transform.move = function(el, dx, dy){
+		// Get the transform > translate definition
+		var def = FP.transforms.getDefinition(el, 'translate');
+		// Update them
+		def.x += dx;
+		def.y += dy;
+		// Set the transform > translate value
+		FP.transforms.setDefinition(el, 'translate', def);
+	};
+	FP.selection.transform.flip = function(el, dir){
+		// Get the transform > scale definition
+		var def = FP.transforms.getDefinition(el, 'scale');
+		// Update them
+		if(dir == "x-axis"){
+			def.x *= -1;
+		} else {
+			def.y *= -1;
+		}
+		// Set the transform > scale value
+		FP.transforms.setDefinition(el, 'scale', def);
+	};
+	FP.selection.transform.rotate = function(el, ddeg){
+		// Get the transform > rotate definition
+		var def = FP.transforms.getDefinition(el, 'rotate');
+		// Update them
+		def.deg += ddeg;
+		// Set the transform > rotate value
+		FP.transforms.setDefinition(el, 'rotate', def);
+	};
+
+	/***************** Transforms ****************/
+
+	// A helper to manage SVG transform attributes (they can have multiple definitions in one and the order is important)
+
+	FP.transforms = {};
+	FP.transforms.setDefinition = function(el, definition, def){
+		// Rebuild the attribute here
+		var newAttr = {};
+		// Populate that ^ with the current attribute definitions
+		el = $(el);
+		var transform = el.attr('transform');
+		if(transform){
+			var regex = /(translate|scale|rotate)\(([^\)]*)\)/g;
+			while(m = regex.exec(transform)){
+				newAttr[m[1]] = m[2];
+			}
+		}
+		// Add the new attribute part 
+		switch(definition){
+			case "translate":
+			case "scale":
+				newAttr[definition] = def.x + ',' + def.y;
+				break;
+			case "rotate":
+				newAttr[definition] = def.deg;
+				break;
+		}
+		// Rebuild into a string, the order must ALWAYS be: translate(x,y) rotate(deg) scale(x,y)
+		var attrStr = '';
+		$.each(['translate', 'rotate', 'scale'], function(k, v){
+			if(newAttr[v]){
+				attrStr += v + '(' + newAttr[v] + ') ';
+			}
+		});
+		attrStr = $.trim(attrStr);
+		// Apply the new attribute
+		el.attr('transform', attrStr);
+	};
+	FP.transforms.getDefinition = function(el, definition){
+		el = $(el);
+		// Grab the transform attribute
+		var transform = el.attr('transform');
+		// Which definition?
+		switch(definition){
+			case "translate":
+			case "scale":
+				// Defaults for translate AND scale
+				var values = (definition == 'translate') ? { x: 0, y: 0 } : { x: 1, y: 1 };
+				// Pull out the actual value
+				if(transform){
+					// Match it
+					var regex = new RegExp(definition + "\\((-?\\d*),(-?\\d*)\\)", "i");
+					var translate = transform.match(regex);
+					if(translate){
+						// Update
+						values.x = parseFloat(translate[1], 10);
+						values.y = parseFloat(translate[2], 10);
+					}
+				}
+				return values;
+			case "rotate":
+				// Defaults:
+				var values = { deg: 0 };
+				if(transform){
+					// Match it
+					var regex = /rotate\((-?\d*)\)/i;
+					var rotate = transform.match(regex);
+					if(rotate){
+						// Update
+						values.deg = parseFloat(rotate[1], 10);
+					}
+				}
+				return values;
+		}
+	};
+
+/***************** Interface *****************/
+
+FP.interface = {};
+FP.interface.init = function(){
+	// Add the click events to the tools
+	$('#tools').on("mousedown", "button", FP.interface.clickTool);
+	// Select the default tool
+	FP.interface.selectTool(FP.tool);
+};
+FP.interface.updateStatus = function(){
+	// Mostly just mouse bits
+	$('#snap').html(FP.mouse.snap.x + ',' + FP.mouse.snap.y);
+	$('#drag').html(FP.mouse.drag.x + ',' + FP.mouse.drag.y);
+	$('#button').html(FP.mouse.button ? '&#x26AB;' : '&#x26AA;');
+};
+FP.interface.selectTool = function(toolName){
+	// Switch the classes
+	$('#tools .active').removeClass('active');
+	$('#tools .' + toolName).addClass('active');
+	// Set the local variable
+	FP.tool = toolName;
+};
+FP.interface.clickTool = function(e){
+	// Delegate
+	FP.interface.selectTool($(this).attr('class'));
+};
+
 /******************* Tools *******************/
 
 FP.tools = {};
-FP.tools.select = function(tool){
-	// Selects a tool
-};
-FP.tools.toggle = function(){
-	// Toggles a layer
-};
 
-/***************** Transforms ****************/
+	/************** Tools > Pointer **************/
 
-FP.transforms = {};
-FP.transforms.setDefinition = function(el, definition, def){
-	// Rebuild the attribute here
-	var newAttr = {};
-	// Populate that ^ with the current attribute definitions
-	el = $(el);
-	var transform = el.attr('transform');
-	if(transform){
-		var regex = /(translate|scale|rotate)\(([^\)]*)\)/g;
-		while(m = regex.exec(transform)){
-			newAttr[m[1]] = m[2];
-		}
-	}
-	// Add the new attribute part 
-	switch(definition){
-		case "translate":
-		case "scale":
-			newAttr[definition] = def.x + ',' + def.y;
-			break;
-		case "rotate":
-			newAttr[definition] = def.deg;
-			break;
-	}
-	// Rebuild into a string, the order must ALWAYS be: translate(x,y) rotate(deg) scale(x,y)
-	var attrStr = '';
-	$.each(['translate', 'rotate', 'scale'], function(k, v){
-		if(newAttr[v]){
-			attrStr += v + '(' + newAttr[v] + ') ';
-		}
-	});
-	attrStr = $.trim(attrStr);
-	// Apply the new attribute
-	el.attr('transform', attrStr);
-};
-FP.transforms.getDefinition = function(el, definition){
-	el = $(el);
-	// Grab the transform attribute
-	var transform = el.attr('transform');
-	// Which definition?
-	switch(definition){
-		case "translate":
-		case "scale":
-			// Defaults for translate AND scale
-			var values = (definition == 'translate') ? { x: 0, y: 0 } : { x: 1, y: 1 };
-			// Pull out the actual value
-			if(transform){
-				// Match it
-				var regex = new RegExp(definition + "\\((-?\\d*),(-?\\d*)\\)", "i");
-				var translate = transform.match(regex);
-				if(translate){
-					// Update
-					values.x = parseFloat(translate[1], 10);
-					values.y = parseFloat(translate[2], 10);
-				}
-			}
-			return values;
-		case "rotate":
-			// Defaults:
-			var values = { deg: 0 };
-			if(transform){
-				// Match it
-				var regex = /rotate\((-?\d*)\)/i;
-				var rotate = transform.match(regex);
-				if(rotate){
-					// Update
-					values.deg = parseFloat(rotate[1], 10);
-				}
-			}
-			return values;
-	}
-};
+	FP.tools.pointer = {};
+	FP.tools.pointer.selectTool = function(e){};
+	FP.tools.pointer.click = function(e){
+		// Clicking an editor point?
+			// Highlight the point
+		// Clicking a sketch element?
+			// Toggle it's selection
+	};
+	FP.tools.pointer.dragStart = function(e){};
+	FP.tools.pointer.drag = function(e){};
+	FP.tools.pointer.dragEnd = function(e){};
+	FP.tools.pointer.keyPress = function(e){
+		// ESC?
+			// Clear the selection
+		// UP, DOWN, LEFT, RIGHT?
+			// Move the selection
+		// DELETE
+			// Delete the selection
+	};
 
-/***************** ?????????? ****************/
+	/*************** Tools > Walls ***************/
 
-console.warn('not sure where this stuff lives yet - selection makes sense?');
-FP.move = function(el, dx, dy){
-	// Get the transform > translate definition
-	var def = FP.transforms.getDefinition(el, 'translate');
-	// Update them
-	def.x += dx;
-	def.y += dy;
-	// Set the transform > translate value
-	FP.transforms.setDefinition(el, 'translate', def);
-};
-FP.flip = function(el, dir){
-	// Get the transform > scale definition
-	var def = FP.transforms.getDefinition(el, 'scale');
-	// Update them
-	if(dir == "x-axis"){
-		def.x *= -1;
-	} else {
-		def.y *= -1;
-	}
-	// Set the transform > scale value
-	FP.transforms.setDefinition(el, 'scale', def);
-};
-FP.rotate = function(el, ddeg){
-	// Get the transform > rotate definition
-	var def = FP.transforms.getDefinition(el, 'rotate');
-	// Update them
-	def.deg += ddeg;
-	// Set the transform > rotate value
-	FP.transforms.setDefinition(el, 'rotate', def);
-};
+	FP.tools.walls = {};
+	FP.tools.walls.selectTool = function(e){
+		// Clear the selection
+		FP.selection.clear();
+	};
+	FP.tools.walls.click = function(e){
+		// If we have a path already
+			// Add a point
+		// Otherwise
+			// Start a path
+	};
+	FP.tools.walls.keyPress = function(e){
+		// ENTER or ESC?
+			// End the path
+	};
 
+
+/*
+	e.shiftKey
+	e.ctrlKey
+	e.altKey
+	e.metaKey
+*/
+
+/***************** Tests ****************/
 
 
 
@@ -329,7 +442,7 @@ FP.tests.selectRandomElement = function(){
 FP.tests.selectionMove = function(dx, dy){
 	// Loop the selection and move them
 	$.each(FP.selection.data, function(k,v){
-		FP.move(v, dx, dy);
+		FP.selection.transform.move(v, dx, dy);
 	});
 	// Redraw the selection
 	FP.selection.redraw();
@@ -337,7 +450,7 @@ FP.tests.selectionMove = function(dx, dy){
 FP.tests.selectionFlip = function(dir){
 	// Loop the selection and move them
 	$.each(FP.selection.data, function(k,v){
-		FP.flip(v, dir);
+		FP.selection.transform.flip(v, dir);
 	});
 	// Redraw the selection
 	FP.selection.redraw();
@@ -345,7 +458,7 @@ FP.tests.selectionFlip = function(dir){
 FP.tests.selectionRotate = function(deg){
 	// Loop the selection and move them
 	$.each(FP.selection.data, function(k,v){
-		FP.rotate(v, deg);
+		FP.selection.transform.rotate(v, deg);
 	});
 	// Redraw the selection
 	FP.selection.redraw();

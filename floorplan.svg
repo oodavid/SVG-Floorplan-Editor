@@ -59,7 +59,7 @@
 			<path transform="translate(20,20)"   d="M0,0 l180,0 l0,140 l-20,0" />
 			<path transform="translate(160,160)" d="M0,0 l-20,0 l0,-100 l-20,0 l0,40" />
 			<!-- Window - just a blue line -->
-			<path transform="translate(500,100)" d="M0,0 l60,0 l40,40" stroke="#ABCDEF" />
+			<path transform="translate(120,100)" d="M0,0 l0,60 l-40,40 l-60,0" stroke="#ABCDEF" />
 		</g>
 		<!-- Layer: Items -->
 		<g id="items">
@@ -79,12 +79,12 @@
 		</g>
 		<!-- Layer: Labels -->
 		<g id="labels" font-family="sans-serif" font-size="12" fill="#000000" text-anchor="middle">
-			<text transform="translate(400,50)">Some label</text>
+			<text transform="translate(540,200)">Some label</text>
 		</g>
 	</g>
 
 	<!-- This should be added and removed programmatically for our editor -->
-	<g id="editor" stroke="#F07746" stroke-width="2" fill="none">
+	<g id="editor">
 		<style type="text/css">
 			<![CDATA[
 				#sketch image:hover			{opacity:.6;}
@@ -94,20 +94,23 @@
 				#sketch #asbestos use:hover	{opacity:.6;}
 				#sketch #arrows path:hover	{stroke: #F07746;}
 				#sketch #labels text:hover	{fill: #F07746;}
+				#editor circle:hover		{fill: #F07746;}
 			]]>
 		</style>
-		<!-- Dragselect -->
-		<rect x="100" y="150" height="200" width="120" />
-		<!-- An object selection-->
-		<g>
-			<rect x="300" y="150" height="200" width="120" stroke-dasharray="2 2" />
-			<g transform="translate(310,160)">
+		<!-- Our "templates" -->
+		<g id="tmpl" display="none">
+			<rect   id="mouseDrag"    x="100" y="150" height="200" width="120"  />
+			<rect   id="selectionBox" x="300" y="150" height="200" width="120" stroke-dasharray="2 2" />
+			<circle id="pointMid"     cx="260" cy="300" r="5" />
+			<circle id="pointStart"   cx="260" cy="300" r="5" />
+			<circle id="pointEnd"     cx="260" cy="300" r="5" />
+			<g id="pointCenter" transform="translate(310,160)">
 				<line x1="-5" y1="-5" x2="5" y2="5" />
 				<line x1="-5" y1="5" x2="5" y2="-5" />
 			</g>
 		</g>
-		<!-- A handle -->
-		<circle cx="260" cy="300" r="5" />
+		<!-- The visible UI -->
+		<g id="ui" stroke="#F07746" stroke-width="2" fill="none"></g>
 	</g>
 
 </svg>
