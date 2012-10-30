@@ -95,6 +95,13 @@
 			<button onclick="FP.tests.addItem('item001');">select a path</button>
 			<button onclick="FP.tests.addItem('asbestos001');">move a point within a path</button>
 			<button onclick="FP.tests.deleteRandomItem();">delete a point from a path</button>
+
+			<h3>Convert to PNG</h3>
+			<p>Having a little trouble making wkhtmltopdf render SVGs properly (anything with a stroke seems to break it) so as an interim we can convert to a PNG reasonably well with cairo:</p>
+			<pre>~/CairoSVG/cairosvg.py ~/Documents/svgfloorplans.com/test.svg -o ~/Desktop/test.png</pre>
+			<h4>on second thoughts...</h4>
+			<p>I have just tried PRINCE and it looks SUPERB. No support for patterns, but I can live with that</p>
+			<p>Print with prince - STAMP over their logo using pdftk - boom</p>
 		</div>
 		<!-- Stage -->
 		<div id="stage">

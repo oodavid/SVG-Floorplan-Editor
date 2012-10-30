@@ -25,7 +25,7 @@ FP.mouse = {
 	button: false,			// Is the mouse button down?
 	dragging: false,		// Are we dragging (ie, the drag coords have changed and the button is pressed)
 	target: false,			// The element that we mousedowned on (passed to click and drag events)
-	targetcontext: false,	// The context of that element (bg, sketch or ui)
+	targetcontext: 'bg',	// The context of that element (bg, sketch or ui)
 	fine: { x: 0, y: 0 },	// The EXACT mouse coordinates - not sure if this is actually used by anything...
 	snap: { x: 0, y: 0 },	// The mouse coordinates, with snapping
 	drop: { x: 0, y: 0 },	// The SNAP coordinates when we last mousedowned OR mouseupped
@@ -192,7 +192,10 @@ FP.selection.add_remove_toggle = function(elements, mode){
 		}
 		// Add or remove?
 		if(mode == 'add' && index == -1){
+			// Add to the selection
 			FP.selection.elements.push(v);
+			// Use the pointer tool (just in case)
+			FP.interface.selectTool('pointer');
 		} else if(mode == 'remove' && index != -1){
 			FP.selection.elements.splice(index, 1);
 		}
@@ -370,6 +373,10 @@ FP.interface.selectTool = function(toolName){
 	$('#tools .' + toolName).addClass('active');
 	// Set the local variable
 	FP.tool = toolName;
+	// If the tool isn't "pointer", clear the selection
+	if(FP.tool != 'pointer'){
+		FP.selection.clear();
+	}
 };
 FP.interface.clickTool = function(e){
 	// Delegate
@@ -499,33 +506,33 @@ FP.tests.deleteRandomItem = function(){
 
 
 
-FP.paths = {};
-FP.paths.checkSelection = function(){
+FP.path = {};
+FP.path.checkSelection = function(){
 	// Checks the selection to make sure we only have a single PATH selected
 	return true;
 };
-FP.paths.addPoint = function(){
+FP.path.addPoint = function(){
 	// Only if we have a good selection
-	if(!FP.paths.checkSelection()){ return; }
+	if(!FP.path.checkSelection()){ return; }
 	// Add a point in a random position
 	// ...
 };
-FP.paths.deletePoint = function(){
+FP.path.deletePoint = function(){
 	// Only if we have a good selection
-	if(!FP.paths.checkSelection()){ return; }
+	if(!FP.path.checkSelection()){ return; }
 	// Pick a point
 	// Delete it
 };
-FP.paths.movePoint = function(){
+FP.path.movePoint = function(){
 	// Only if we have a good selection
-	if(!FP.paths.checkSelection()){ return; }
+	if(!FP.path.checkSelection()){ return; }
 	// Pick a point
 	// Move it to a random position
 };
-FP.paths.deletePartialPaths = function(){
+FP.path.deletePartialPaths = function(){
 	// Delete all paths that have an indecent amount of points
 };
-FP.paths.pathToPoints = function(){
+FP.path.pathToPoints = function(){
 	// FUNCTIONALITY FROM THE OLD MOVE THINGIES - SHOWS HOW TO PARSE THE DATA :-)
 	// Path data attribute
 	var d = el.attr('d');

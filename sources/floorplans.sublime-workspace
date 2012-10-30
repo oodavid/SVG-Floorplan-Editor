@@ -4,6 +4,70 @@
 		"selected_items":
 		[
 			[
+				"print",
+				"printce"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"prin",
+				"printce"
+			],
+			[
+				"po",
+				"pointer"
+			],
+			[
+				"pois",
+				"positions"
+			],
+			[
+				"get",
+				"getDefinition"
+			],
+			[
+				"ta",
+				"targetcontext"
+			],
+			[
+				"tar",
+				"targetcontext"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"no",
+				"nodeName"
+			],
+			[
+				"mo",
+				"mousedowned"
+			],
+			[
+				"trans",
+				"transforms"
+			],
+			[
+				"clic",
+				"clickTool"
+			],
+			[
+				"sour",
+				"svg_source"
+			],
+			[
+				"tr",
+				"translate"
+			],
+			[
+				"att",
+				"attributes"
+			],
+			[
 				"rob",
 				"robotid"
 			],
@@ -152,10 +216,6 @@
 				"building"
 			],
 			[
-				"lo",
-				"location"
-			],
-			[
 				"cli",
 				"clickshow"
 			],
@@ -200,10 +260,6 @@
 				"form_site_finder"
 			],
 			[
-				"get",
-				"getBounds"
-			],
-			[
 				"v",
 				"var"
 			],
@@ -228,19 +284,21 @@
 	"buffers":
 	[
 		{
-			"file": "/home/david/Documents/svgfloorplans.com/floorplan.svg",
+			"file": "/home/david/Documents/corrodere.com/index.html",
 			"settings":
 			{
-				"buffer_size": 229,
-				"line_ending": "Unix"
+				"buffer_size": 2257,
+				"line_ending": "Unix",
+				"name": "<h1>Corrodere Server</h1>"
 			}
 		},
 		{
-			"file": "/home/david/Documents/svgfloorplans.com/index.html",
+			"file": "/home/david/Documents/corrodere.com/.htaccess",
 			"settings":
 			{
-				"buffer_size": 1349,
-				"line_ending": "Unix"
+				"buffer_size": 172,
+				"line_ending": "Unix",
+				"name": "# A simple rewrite to check evereything works OK"
 			}
 		}
 	],
@@ -304,6 +362,29 @@
 	},
 	"file_history":
 	[
+		"/home/david/Desktop/server setup.txt",
+		"/home/david/Documents/corrodere.com/bitbucket.php",
+		"/home/david/Documents/lucion.co.uk/github.php",
+		"/home/david/Documents/svgfloorplans.com/bg.svg",
+		"/home/david/Documents/svgfloorplans.com/svgfloorplans.js",
+		"/home/david/Documents/svgfloorplans.com/index.html",
+		"/home/david/Documents/svgfloorplans.com/floorplan.svg",
+		"/home/david/Documents/svgfloorplans.com/test.svg",
+		"/home/david/Documents/lucion.co.uk/print/index.php",
+		"/home/david/Documents/svgfloorplans.com/printce/printce.php",
+		"/home/david/Documents/svgfloorplans.com/printce/prince.html",
+		"/home/david/Documents/svgfloorplans.com/printce/printce.js",
+		"/home/david/Documents/svgfloorplans.com/printce/data/FOOuC5cX2",
+		"/home/david/Documents/svgfloorplans.com/printce.php",
+		"/home/david/Desktop/printce.js",
+		"/home/david/Desktop/prince.html",
+		"/home/david/Desktop/printce.css",
+		"/home/david/Desktop/toc.js",
+		"/home/david/Documents/svgfloorplans.com/test.html",
+		"/home/david/Downloads/dog_basket.svg",
+		"/home/david/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/david/Documents/svgfloorplans.com/fg.svg",
+		"/home/david/Documents/svgfloorplans.com/grid.svg",
 		"/home/david/Desktop/floorplan.svg",
 		"/home/david/Desktop/floorplan.htm",
 		"/home/david/Desktop/productivity.txt",
@@ -360,7 +441,6 @@
 		"/home/david/Downloads/phpcoord-2.3/phpcoord-2.3.php",
 		"/home/david/Downloads/phpcoord-2.3/readme-2.3.txt",
 		"/home/david/Documents/lucion.co.uk/pages/tmp/utils.php",
-		"/home/david/Documents/lucion.co.uk/print/index.php",
 		"/home/david/Documents/lucion.co.uk/.supporting_files/lucion.sublime-workspace",
 		"/home/david/Documents/lucion.co.uk/pages/register-confirm.php",
 		"/home/david/Documents/lucion.co.uk/css/style.css",
@@ -408,30 +488,8 @@
 		"/home/david/Documents/lucion.co.uk/print/templates/management.html",
 		"/home/david/Documents/lucion.co.uk/print/templates/index.html",
 		"/home/david/Documents/lucion.co.uk/minify/index.php",
-		"/home/david/Documents/lucion.co.uk/github.php",
 		"/home/david/Documents/lucion.co.uk/print/wkhtmltopdf-reset/wkhtmltopdf.css",
-		"/home/david/Documents/lucion.co.uk/print/templates/header.html",
-		"/home/david/Documents/lucion.co.uk/print/templates/footer.html",
-		"/home/david/Downloads/download",
-		"/home/david/Documents/lucion.co.uk/schema/demo/common.php",
-		"/home/david/Documents/lucion.co.uk/print/templates/style.css",
-		"/home/david/Documents/lucion.co.uk/print/templates/date.format.js",
-		"/home/david/Documents/lucion.co.uk/mysqltest.php",
-		"/home/david/Documents/lucion.co.uk/help.php",
-		"/home/david/Documents/corrodere.com/corrodere.txt",
-		"/home/david/Desktop/nexgen-backup-trim.sql",
-		"/home/david/Documents/lucion.co.uk/print/wkhtmltopdf-reset/data.js",
-		"/home/david/Documents/oodavid.com/cv.htm",
-		"/home/david/Documents/FarmFreshCSS/index.html",
-		"/home/david/Documents/FarmFreshCSS/stub.css",
-		"/home/david/Desktop/readinglocations.sql",
-		"/home/david/.config/sublime-text-2/Packages/User/Global.sublime-settings",
-		"/home/david/.config/sublime-text-2/Packages/Default/Global.sublime-settings",
-		"/home/david/.config/sublime-text-2/Packages/User/Distraction Free.sublime-settings",
-		"/home/david/.config/sublime-text-2/Packages/User/CSS.sublime-settings",
-		"/home/david/.config/sublime-text-2/Packages/User/Base File.sublime-settings",
-		"/home/david/.config/sublime-text-2/Packages/Default/Base File.sublime-settings",
-		"/home/david/Documents/FarmFreshCSS/farmfresh.css"
+		"/home/david/Documents/lucion.co.uk/print/templates/header.html"
 	],
 	"find":
 	{
@@ -477,6 +535,49 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"demo",
+			"charset",
+			"-webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none;",
+			"wkhtml",
+			"./test.svg",
+			"smiley.svg",
+			"selection.add",
+			"interface",
+			"FP.paths",
+			"attr(",
+			"transform",
+			"add",
+			"item001",
+			"getDefinition",
+			"FP.selection.data",
+			"<",
+			">",
+			"updateStatus",
+			"FP.rotate",
+			"FP.flip",
+			"FP.move",
+			"on(",
+			"interface",
+			"fine",
+			"FP.button",
+			"FP.dragging",
+			"FP.updateStatus",
+			"currentObject",
+			"0px 0px 10px 1px #DADADA",
+			"<div class=\"tool ",
+			"mouse",
+			"high",
+			"poly",
+			"path",
+			"console",
+			"=\"#",
+			"style",
+			"svgworkspace",
+			"svggrid",
+			"FP.currentObject",
+			"class=\"layer",
+			"FP.snap2grid",
+			"event",
 			"mail",
 			"$MOBILEVERSION",
 			"DEV",
@@ -561,50 +662,7 @@
 			"http",
 			"closecursor",
 			"fetch",
-			"fetchOne",
-			"findOne",
-			"select *",
-			"mail",
-			"login",
-			"page=",
-			"?page=",
-			".php",
-			"analyst",
-			"items",
-			"\\n\\n\\n\\n(.*)\\n(.*)\\n(.*)\\n(.*)\\n(.*)\\n(.*)\\n(.*)\\n(.*)\\n(.*)",
-			"birthday",
-			"createWindow",
-			"jobs",
-			"sites",
-			"latlon",
-			"todeg",
-			"gridrefLetToNu",
-			"toDeg",
-			"sites",
-			"height",
-			"grid",
-			".type",
-			"survey_item",
-			"view_job_notes",
-			"notes",
-			"001/house",
-			"image\":",
-			"sites",
-			"floorplans",
-			"analyses",
-			"analysese",
-			"height",
-			"sample",
-			"samples",
-			"(SELECT",
-			"records",
-			"comments",
-			"analys",
-			"analy",
-			"asbestos_type",
-			"records",
-			"sample",
-			"buildings"
+			"fetchOne"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -612,6 +670,24 @@
 		"regex": false,
 		"replace_history":
 		[
+			"chris",
+			"./floorplan.svg",
+			"FP.path",
+			"FP.selection.elements",
+			"&lt;",
+			"&gt;",
+			"FP.selection.transform.rotate",
+			"FP.selection.transform.flip",
+			"FP.selection.transform.move",
+			"FP.mouse.dragging",
+			"FP.interface.updateStatus",
+			"0px 0px 10px 1px #CCCCCC",
+			"<button class=\"",
+			"=\"",
+			"svg_source",
+			"svg_bg",
+			"class=\"tool",
+			"FP.snaplevel",
 			"],\\n['",
 			"', ",
 			"]\\n[",
@@ -700,28 +776,31 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/home/david/Documents/svgfloorplans.com/floorplan.svg",
+					"file": "/home/david/Documents/corrodere.com/index.html",
 					"settings":
 					{
-						"buffer_size": 229,
+						"buffer_size": 2257,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								154,
-								154
+								1000,
+								1000
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/XML/XML.tmLanguage"
+							"auto_name": "<h1>Corrodere Server</h1>",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 8,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -731,10 +810,10 @@
 				},
 				{
 					"buffer": 1,
-					"file": "/home/david/Documents/svgfloorplans.com/index.html",
+					"file": "/home/david/Documents/corrodere.com/.htaccess",
 					"settings":
 					{
-						"buffer_size": 1349,
+						"buffer_size": 172,
 						"regions":
 						{
 						},
@@ -747,7 +826,8 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"auto_name": "# A simple rewrite to check evereything works OK",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -760,7 +840,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 34.0
 	},
 	"input":
 	{
