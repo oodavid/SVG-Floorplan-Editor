@@ -1,0 +1,39 @@
+{
+	"floorplans": [
+		{
+			"id":		1,
+			"title":	"Blue Building, Ground Floor",
+			/*
+			images
+				<image transform="translate(20,300)" class="image" width="400px" height="400px" xlink:href="./trace.gif"></image>
+			floors
+				things like external areas
+			locations (automatic)
+
+			walls
+				<path transform="translate(20,20)"   d="M0,0 l180,0 l0,140 l-20,0" />
+				<path transform="translate(160,160)" d="M0,0 l-20,0 l0,-100 l-20,0 l0,40" />
+				<!-- Window - just a blue line -->
+				<path transform="translate(120,100)" d="M0,0 l0,60 l-40,40 l-60,0" stroke="#ABCDEF" />
+			items
+				<use xlink:href="#item001" transform="translate(160,160) rotate(90) scale(1,-1)" />
+			arrows
+				<path transform="translate(500,200)" d="M0,0 l-200,0 l-100,-100" stroke-width="2" stroke-dasharray="4 4" fill="none" style="marker-start:url(#arrowhead001); marker-end:url(#arrowhead001)" />
+			labels
+				<text transform="translate(540,200)">Some label</text>
+			*/
+		}
+	],
+	"locations": [
+		{
+			"id":				1,
+			"building_name":	"Blue Building",
+			"level":			0,
+			"location_name":	"001 / Bathroom",
+			"floorplan":		1,
+			"risk_level":		"R2",
+			"path":				"M0,0 l180,0 l0,140 l-60,0 l0,-100 l-120,0 M200,200 l-120,0 l0,120",
+			"transform":		"translate(20,20)"
+		}
+	]
+}

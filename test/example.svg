@@ -91,12 +91,16 @@
 			<use xlink:href="#door001" transform="translate(10,10) rotate(180)" />
 			<!-- Asbestos -->
 			<use xlink:href="#asbestos001" transform="translate(80,0)" />
-			<!-- Marker -->
-			<path transform="translate(0,100)" d="M0,0 l100,0 l50,-50" stroke-width="2" stroke-dasharray="4 4" stroke="#333333" fill="none" style="marker-start:url(#arrowhead001); marker-end:url(#arrowhead001)" />
 			<!-- External Asset -->
 			<use xlink:href="assets.svg#asbestos001" transform="translate(120,0)" />
+			<!-- Marker (path transform not applied) -->
+			<path transform="translate(0,100)" d="M0,0 l100,0 l50,-50" stroke-width="2" stroke-dasharray="4 4" stroke="#333333" fill="none" style="marker-start:url(#arrowhead001); marker-end:url(#arrowhead001)" />
+			<!-- Marker (group transform IS applied) -->
+			<g transform="translate(0,120)">
+				<path d="M0,0 l100,0 l50,-50" stroke-width="2" stroke-dasharray="4 4" stroke="#333333" fill="none" style="marker-start:url(#arrowhead001); marker-end:url(#arrowhead001)" />
+			</g>
 			<!-- External Marker -->
-			<path transform="translate(0,120)" d="M0,0 l100,0 l50,-50" stroke-width="2" stroke-dasharray="4 4" stroke="#333333" fill="none" style="marker-start:url(assets.svg#arrowhead001); marker-end:url(assets.svg#arrowhead001)" />
+			<path transform="translate(0,140)" d="M0,0 l100,0 l50,-50" stroke-width="2" stroke-dasharray="4 4" stroke="#333333" fill="none" style="marker-start:url(assets.svg#arrowhead001); marker-end:url(assets.svg#arrowhead001)" />
 		</g>
 
 		<!-- Layer: Bitmaps -->
@@ -108,7 +112,7 @@
 		</g>
 
 		<!-- Layer: Patterns -->
-		<g id="patterns" transform="translate(420,150)" fill-rule="nonzero">
+		<g id="patterns" transform="translate(420,170)" fill-rule="nonzero">
 			<path transform="translate(10,10)" d="M0,0 l50,0 l0,50 l-50,0" fill="url(#hatch001)" />
 			<path transform="translate(70,10)" d="M0,0 l50,0 l0,50 l-50,0" fill="url(#hatch002)" />
 			<path transform="translate(130,10)" d="M0,0 l50,0 l0,50 l-50,0" fill="url(#hatch003)" />

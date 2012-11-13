@@ -284,21 +284,43 @@
 	"buffers":
 	[
 		{
-			"file": "/home/david/Documents/corrodere.com/index.html",
+			"file": "/home/david/Documents/svgfloorplans.com/index.html",
 			"settings":
 			{
-				"buffer_size": 2257,
-				"line_ending": "Unix",
-				"name": "<h1>Corrodere Server</h1>"
+				"buffer_size": 6396,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/david/Documents/corrodere.com/.htaccess",
+			"file": "/home/david/Documents/svgfloorplans.com/data.json",
 			"settings":
 			{
-				"buffer_size": 172,
-				"line_ending": "Unix",
-				"name": "# A simple rewrite to check evereything works OK"
+				"buffer_size": 1257,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/david/Documents/svgfloorplans.com/template.svg",
+			"settings":
+			{
+				"buffer_size": 6987,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/david/Documents/svgfloorplans.com/test/example.svg",
+			"settings":
+			{
+				"buffer_size": 7270,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/david/Documents/svgfloorplans.com/svgfloorplans.js",
+			"settings":
+			{
+				"buffer_size": 19279,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -362,6 +384,14 @@
 	},
 	"file_history":
 	[
+		"/home/david/Documents/svgfloorplans.com/README.markdown",
+		"/home/david/Documents/svgfloorplans.com/README.markdown (Case Conflict 1)",
+		"/home/david/Documents/svgfloorplans.com/README.markdown (Case Conflict 2)",
+		"/home/david/Documents/svgfloorplans.com/README.markdown (Case Conflict 3)",
+		"/home/david/Documents/svgfloorplans.com/readme.markdown",
+		"/home/david/Documents/svgfloorplans.com/test/example.svg",
+		"/home/david/Documents/corrodere.com/.htaccess",
+		"/home/david/Documents/corrodere.com/index.html",
 		"/home/david/Desktop/server setup.txt",
 		"/home/david/Documents/corrodere.com/bitbucket.php",
 		"/home/david/Documents/lucion.co.uk/github.php",
@@ -481,15 +511,7 @@
 		"/home/david/Documents/lucion.co.uk/activity.php",
 		"/home/david/Documents/lucion.co.uk/workload.php",
 		"/home/david/Desktop/workstation.md",
-		"/home/david/Documents/lucion.co.uk/schema/lightform.js",
-		"/home/david/Desktop/Lucion BUlk Notes.md",
-		"/home/david/Desktop/index.html",
-		"/home/david/Documents/lucion.co.uk/print/templates/script.js",
-		"/home/david/Documents/lucion.co.uk/print/templates/management.html",
-		"/home/david/Documents/lucion.co.uk/print/templates/index.html",
-		"/home/david/Documents/lucion.co.uk/minify/index.php",
-		"/home/david/Documents/lucion.co.uk/print/wkhtmltopdf-reset/wkhtmltopdf.css",
-		"/home/david/Documents/lucion.co.uk/print/templates/header.html"
+		"/home/david/Documents/lucion.co.uk/schema/lightform.js"
 	],
 	"find":
 	{
@@ -535,6 +557,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			" d=",
+			"d=",
+			"arrowhead001",
+			"tmpl",
+			"editor",
+			"px",
+			"floor00",
+			"hatch00",
+			"hatch001",
+			";}",
 			"demo",
 			"charset",
 			"-webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none;",
@@ -652,17 +684,7 @@
 			"http_host",
 			"var",
 			"confirmed",
-			"users",
-			"myschema",
-			"user",
-			"upsert",
-			"users",
-			"password",
-			"$_SERVER['HTTP_HOST']",
-			"http",
-			"closecursor",
-			"fetch",
-			"fetchOne"
+			"users"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -670,6 +692,10 @@
 		"regex": false,
 		"replace_history":
 		[
+			"arrow_01",
+			"floor_0",
+			"floor00",
+			"floor001",
 			"chris",
 			"./floorplan.svg",
 			"FP.path",
@@ -776,61 +802,142 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/home/david/Documents/corrodere.com/index.html",
+					"file": "/home/david/Documents/svgfloorplans.com/index.html",
 					"settings":
 					{
-						"buffer_size": 2257,
+						"buffer_size": 6396,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1000,
-								1000
+								3409,
+								3409
 							]
 						],
 						"settings":
 						{
-							"auto_name": "<h1>Corrodere Server</h1>",
 							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 8,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false,
+							"word_wrap": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1581.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "/home/david/Documents/corrodere.com/.htaccess",
+					"file": "/home/david/Documents/svgfloorplans.com/data.json",
 					"settings":
 					{
-						"buffer_size": 172,
+						"buffer_size": 1257,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								638,
+								638
 							]
 						],
 						"settings":
 						{
-							"auto_name": "# A simple rewrite to check evereything works OK",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/david/Documents/svgfloorplans.com/template.svg",
+					"settings":
+					{
+						"buffer_size": 6987,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4232,
+								4232
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1224.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/home/david/Documents/svgfloorplans.com/test/example.svg",
+					"settings":
+					{
+						"buffer_size": 7270,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6348,
+								6348
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1326.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/home/david/Documents/svgfloorplans.com/svgfloorplans.js",
+					"settings":
+					{
+						"buffer_size": 19279,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17038,
+								17038
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 9615.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
