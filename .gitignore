@@ -1,0 +1,9 @@
+##### Backup files and settings
+.dropbox
+sources/*
+
+##### Operating System gubbins
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
