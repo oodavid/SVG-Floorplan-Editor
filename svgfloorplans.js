@@ -9,7 +9,7 @@ FP.init = function(e){
 	// Load the BG
 	$('#svg_bg').svg('get').load('./bg.svg', { addTo: false, changeSize: false });
 	// Load the source
-	$('#svg_source').svg('get').load('./floorplan.svg', { addTo: false, changeSize: false, onLoad: FP.load });
+	$('#svg_source').svg('get').load('./template.svg', { addTo: false, changeSize: false, onLoad: FP.load });
 };
 $(document).ready(FP.init);
 FP.load = function(){

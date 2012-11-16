@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>SVG Floorplans &gt; todo list...</title>
+	<style type="text/css">
+		body		{margin: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #333333; background-color: #DDDDDD;}
+		.container	{width: 800px; padding: 20px; background: #FFFFFF; margin: 0 auto;}
+		table		{width: 100%;}
+		th, td		{padding: 3px 5px; text-align: left; vertical-align: top;}
+		th			{background: #F07746; color: #FFFFFF;}
+		td			{background: #F0F0F0;}
+		kbd			{display: inline-block; padding: 2px 4px; font-size: 11.844px; font-weight: bold; line-height: 14px; color: #FFFFFF; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); white-space: nowrap; vertical-align: baseline; background-color: #999999; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background-color: #3A87AD;}
+		em			{color: #888888;}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<h1>SVG Floorplans &gt; todo list</h1>
+		<p><em>This will eventually become the &quot;help&quot; page...</em></p>
+		<table>
+			<tbody>
+				<!-- All Items -->
+				<tr>
+					<th>All Items</th>
+					<th>MVP</th>
+					<th>Non MVP</th>
+				</tr>
+				<tr>
+					<td>Select ONE Item</td>
+					<td><strike>Click It</strike></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Toggle An Item</td>
+					<td><strike><kbd>CTRL</kbd> Click It</strike></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Select Multiple Items</td>
+					<td></td>
+					<td>Drag BG</td>
+				</tr>
+				<tr>
+					<td>Toggle Multiple Items</td>
+					<td><strike><kbd>CTRL</kbd> Click Them</strike></td>
+					<td><kbd>CTRL</kbd> Drag BG</td>
+				</tr>
+				<tr>
+					<td>Unselect All Items</td>
+					<td>Click the BG</td>
+					<td><kbd>ESC</kbd></td>
+				</tr>
+				<tr>
+					<td>Move Selection</td>
+					<td><strike>Drag any selected item</strike></td>
+					<td><kbd>UP</kbd> <kbd>DOWN</kbd> <kbd>LEFT</kbd> <kbd>RIGHT</kbd></td>
+				</tr>
+				<tr>
+					<td>Flip Items Vertically</td>
+					<td>Click Button on toolbar</td>
+					<td><kbd>V</kbd></td>
+				</tr>
+				<tr>
+					<td>Flip Items Horizontally</td>
+					<td>Click Button on toolbar</td>
+					<td><kbd>H</kbd></td>
+				</tr>
+				<tr>
+					<td>Rotate Items Clockwise</td>
+					<td>Click Button on toolbar</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Rotate Items Anti-Clockwise</td>
+					<td>Click Button on toolbar</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Delete Selection</td>
+					<td>Click Button on toolbar</td>
+					<td>
+						<kbd>DELETE</kbd><br />
+						<kbd>BACKSPACE</kbd> &gt; Confirm
+					</td>
+				</tr>
+				<!-- Assets -->
+				<tr>
+					<th>Assets (Doors etc)</th>
+					<th>MVP</th>
+					<th>Non MVP</th>
+				</tr>
+				<tr>
+					<td>Add an Asset to Stage</td>
+					<td>Click Toolbar Button &gt; Click Stage</td>
+					<td>
+						<kbd>D</kbd> for Door<br />
+						<kbd>S</kbd> for Stairs
+					</td>
+				</tr>
+				<!-- Walls & Windows -->
+				<tr>
+					<th>Walls &amp; Windows</th>
+					<th>MVP</th>
+					<th>Non MVP</th>
+				</tr>
+				<tr>
+					<td>Start a Wall / Window</td>
+					<td>Click Toolbar Button &gt; StartDrag on Stage</td>
+					<td>
+						<kbd>O</kbd> for Outer Wall<br />
+						<kbd>I</kbd> for Inner Wall<br />
+						<kbd>W</kbd> for Window
+					</td>
+				</tr>
+				<tr>
+					<td>End a Wall</td>
+					<td>(after starting wall) &gt; StopDrag on Stage</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Cancel a Wall</td>
+					<td></td>
+					<td>Start Wall &gt; <kbd>ESC</kbd></td>
+				</tr>
+				<tr>
+					<td>Move a Wall Point</td>
+					<td>Select Wall* &gt; Points Appear &gt; Drag Point</td>
+					<td></td>
+				</tr>	
+				<!-- Locations -->
+				<tr>
+					<th>Locations</th>
+					<th>MVP</th>
+					<th>Non MVP</th>
+				</tr>
+				<tr>
+					<td>Start a Location<br /><em>create and select the 1st point</em></td>
+					<td>Click Toolbar Button &gt; Click Stage</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Add a point<br /><em>after selected point<br />new point becomes selected</em></td>
+					<td>(with a point selected) Click Stage</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Select a point</td>
+					<td>(with no point selected) &gt; Click Point</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Drag a point</td>
+					<td>(with no point selected) &gt; Drag Point</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Delete a point</td>
+					<td><kbd>CTRL</kbd> Click a Point</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Deselect the Point<br><em>if &lt; 3 points, location is deleted</em></td>
+					<td><kbd>ESC</kbd></td>
+					<td><kbd>ENTER</kbd></td>
+				</tr>
+				<tr>
+					<td colspan="3"><em>
+						<p>When a location is first selected, the anchor points appear with no point selected.</p>
+						<p>Once a point is selected you would have to press <kbd>ESC</kbd> <strong>twice</strong> to fully deselect (the first deselects the point, the second deselects the Location entirely).</p>
+						<p>Furthermore, I am thinking that once you have selected a point we should pull the Location into a new layer with an opaque white underlay, thus &quot;blurring out&quot; the background - once in this mode we would have to fully deselect the Location to go back, ie:</p>
+						<ol>
+							<li>Select a Location - anchors appear, but we are still in normal mode so we can move things around, add to the selection etc. Business as usual</li>
+							<li>Select a Point on the Location - background dims out, only the location is highlighted, we are now editing</li>
+							<li>Do some editing. Fine</li>
+							<li>Deselect a Point - don't disable the editing mode, otherwise we'd end up flickering if / when we select a new point, REMAIN in the editing mode</li>
+							<li>Deselect the Location entirely - undim the background, apply changes etc nothing selected</li>
+						</ol>
+					</em></td>
+				</tr>
+			</tbody>
+		</table>
+		<h2>Notes</h2>
+		<ul>
+			<li>* Must be the only selection</li>
+			<li>&quot;Stage&quot; = Anywhere on the floorplan</li>
+			<li>&quot;BG&quot; = Anywhere on the background <em>- ie clicking nothing</em></li>
+			<li>MVP = &quot;Minimum Viable Product&quot;</li>
+			<li>Striked Items have been completed</li>
+		</ul>
+	</div>
+	
+</body>
+</html>

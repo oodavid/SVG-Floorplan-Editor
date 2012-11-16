@@ -1,21 +1,25 @@
 <!-- NexGen Floorplan Template -->
-<svg class="edit" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="640" height="480" class="edit" >
 
 	<!-- Styles -->
 	<style type="text/css">
 		<![CDATA[
+			/* Generally */
+				#bg		{stroke: none; fill: #FFFFFF;}
+				text	{font-family: sans-serif; fill: #000000; text-shadow: 0em 0em 1em #FFFFFF;}
+			/* Arrow path (unused) */
+				path.arrow	{stroke: #000000; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; stroke-width: 2; stroke-dasharray: 4 4; fill: none; marker-end: url(#arrow-01);}
 			/* Images */
 				#images {}
 			/* Floors */
 				#floors				{fill-rule: evenodd;}
-				#floors .floor_01	{fill: url(#floor_01);}
-				#floors .floor_02	{fill: url(#floor_02);}
-				#floors .floor_03	{fill: url(#floor_03);}
-				#floors .floor_04	{fill: url(#floor_04);}
-				#floors .floor_05	{fill: url(#floor_05);}
+				#floors .floor-01	{fill: url(#floor-01);}
+				#floors .floor-02	{fill: url(#floor-02);}
+				#floors .floor-03	{fill: url(#floor-03);}
+				#floors .floor-04	{fill: url(#floor-04);}
+				#floors .floor-05	{fill: url(#floor-05);}
 			/* Locations */
-				#locations text	{font-family: sans-serif; fill: #000000; text-shadow: 0em 0em 0.5em #FFFFFF;}
-				#locations path	{fill: #666666;}
+				#locations path	{fill: #666666; stroke: #999999; stroke-width: 1px;}
 				#locations .NULL		path	{}
 				#locations .ERROR		path	{}
 				#locations .NAD			path	{fill: #169D16;}
@@ -25,59 +29,72 @@
 				#locations .R3			path	{fill: #FAD500;}
 				#locations .unanalysed	path	{}
 			/* Walls */
-				#walls			{stroke-width: 4; stroke-linecap: square; stroke-linejoin: miter; fill: none;}
-				#walls .wall	{stroke: #000000;}
+				#walls			{stroke: #666666; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; fill: none;}
+				#walls .inner	{}
+				#walls .outer	{stroke: #000000;}
 				#walls .window	{stroke: #ABCDEF;}
 			/* Items */
 				#items {}
-			/* Arrows */
-				#arrows			{stroke: #000000; stroke-width: 2; stroke-linecap: square; stroke-linejoin: miter; fill: none;}
-				#arrows path	{stroke-width: 2; stroke-dasharray: 4 4; fill: none; marker-end: url(#arrow_01);}
+			/* Floorplan Title */
+				#title	{font-weight: bold; text-decoration: underline;}
 			/* Editor */
-			 	#editor .point						{visibility: hidden; cursor: pointer;}
-				#editor .point .point_outer			{fill: #FFFFFF; opacity: 0; stroke: #888; stroke-width: 2;}
-				#editor .point .point_inner			{fill: #F07746;}
-				#editor .point:hover .point_outer	{opacity: 0.5;}
-				#editor .drag						{visibility: hidden; stroke: none; fill: #F07746; fill-opacity: 0.2;}
+			 	.point						{cursor: pointer;}
+				.point .point-outer			{fill: #FFFFFF; opacity: 0; stroke: #888; stroke-width: 2;}
+				.point .point-inner			{fill: #F07746;}
+				.point:hover .point-outer	{opacity: 0.5;}
+				.dragbox					{visibility: hidden; stroke: none; fill: #F07746; fill-opacity: 0.2;}
+				.cursor-simple circle				{stroke-width: 2; stroke: black; fill: none;}
 				/* Only When Editing... */
-					.edit #editor .point,
-					.edit #editor .drag		{visibility: visible;}
-					.edit #sketch image:hover			{opacity:.6;}
-					.edit #sketch #floors path:hover	{fill: #F07746;}
-					.edit #sketch #locations path:hover	{fill: #F07746;}
-					.edit #sketch #locations text:hover	{fill: #F07746;}
-					.edit #sketch #walls path:hover		{stroke: #F07746;}
-					.edit #sketch #items use:hover		{opacity:.6;}
-					.edit #sketch #asbestos use:hover	{opacity:.6;}
-					.edit #sketch #arrows path:hover	{stroke: #F07746; marker-end: url(#arrow_01_hover);}
+					.edit #bg								{stroke: #000000; stroke-width: 2; fill: url(#bg-grid);}
+					.edit #sketch #floors path:hover,
+					.edit #sketch #floors path.selected,
+					.edit #sketch #locations path:hover,
+					.edit #sketch #locations path.selected,
+					.edit #sketch #locations text:hover,
+					.edit #sketch #locations text.selected	{fill: #F07746;}
+					.edit #sketch #walls line:hover,
+					.edit #sketch #walls line.selected		{stroke: #F07746;}
+					.edit #sketch image:hover,
+					.edit #sketch image.selected,
+					.edit #sketch #items use:hover,
+					.edit #sketch #items use.selected		{opacity:.6;}
+					.edit #sketch #arrows path:hover,
+					.edit #sketch #arrows path.selected		{stroke: #F07746; marker-end: url(#arrow-01-hover);}
 		]]>
 	</style>
 
 	<!-- Patterns and Items -->
 	<defs>
+		<!-- BG Grid -->
+		<pattern id="bg-grid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse" stroke-dasharray="1, 1" stroke-width="1">
+			<line x1="0" y1="0" x2="0" y2="20" stroke="#999999" />
+			<line x1="0" y1="0" x2="20" y2="0" stroke="#999999" />
+			<line x1="10" y1="0" x2="10" y2="20" stroke="#DDDDDD" />
+			<line x1="0" y1="10" x2="20" y2="10" stroke="#DDDDDD" />
+		</pattern>
 		<!-- Floor 1 - diagonal lines \ -->
-		<pattern id="floor_01" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+		<pattern id="floor-01" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
 			<rect x="0" y="0" height="10" width="10" fill="#DDDDDD" />
 			<line x1="10" y1="10" x2="0" y2="0" stroke="#999999" stroke-width="1" />
 		</pattern>
 		<!-- Floor 2 - diagonal lines / -->
-		<pattern id="floor_02" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+		<pattern id="floor-02" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
 			<rect x="0" y="0" height="10" width="10" fill="#DDDDDD" />
 			<line x1="0" y1="10" x2="10" y2="0" stroke="#999999" stroke-width="1" />
 		</pattern>
 		<!-- Floor 3 - cross hatch X -->
-		<pattern id="floor_03" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+		<pattern id="floor-03" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
 			<rect x="0" y="0" height="10" width="10" fill="#DDDDDD" />
 			<line x1="0" y1="10" x2="10" y2="0" stroke="#999999" stroke-width="1" />
 			<line x1="10" y1="10" x2="0" y2="0" stroke="#999999" stroke-width="1" />
 		</pattern>
 		<!-- Floor 4 - dots -->
-		<pattern id="floor_04" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+		<pattern id="floor-04" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
 			<rect x="0" y="0" height="6" width="6" fill="#DDDDDD" />
 			<circle cx="3" cy="3" r="1" fill="#999999"/>
 		</pattern>
 		<!-- Floor 5 - grid # -->
-		<pattern id="floor_05" x="5" y="5" width="10" height="10" patternUnits="userSpaceOnUse">
+		<pattern id="floor-05" x="5" y="5" width="10" height="10" patternUnits="userSpaceOnUse">
 			<rect x="0" y="0" height="10" width="10" fill="#DDDDDD" />
 			<line x1="0" y1="0" x2="10" y2="0" stroke="#999999" stroke-width="1" />
 			<line x1="0" y1="0" x2="0" y2="10" stroke="#999999" stroke-width="1" />
@@ -88,74 +105,82 @@
 			<path d="M-10,-10 L-10,-15 L0,-15 L0,-10 z" fill="#DDDDDD" fill-opacity="0.5" stroke="#000000" stroke-width="2" />
 			<circle cx="0" cy="0" r="5" fill="#DDDDDD" stroke="#000000" stroke-width="2"  />
 		</g>
-		<g id="camera_arrow">
-			<path d="M0,-25 L0,-35" fill="none" stroke="#000000" stroke-width="2" style="marker-end: url(#arrow_01);" />
+		<g id="camera-arrow">
+			<path d="M0,-25 L0,-35" fill="none" stroke="#000000" stroke-width="2" style="marker-end: url(#arrow-01);" />
 		</g>
 		<!-- Door -->
-		<g id="item001">
-			<path d="M0,20 a20,20 0 0,0 20,-20 L0,0" fill="#DDDDDD" fill-opacity="0.5" stroke="#000000" stroke-width="2" stroke-dasharray="4, 4" />
-			<line x1="0" y1="0" x2="20" y2="0" stroke="#333333" stroke-width="4" stroke-linecap="round" />
+		<g id="door-01">
+			<path d="M0,20 a20,20 0 0,0 20,-20 L0,0" fill="#DDDDDD" stroke="#000000" stroke-width="2" stroke-dasharray="4, 4" />
+			<line x1="0" y1="0" x2="20" y2="0" stroke="#000000" stroke-width="4" stroke-linecap="round" />
+		</g>
+		<g id="door-02">
+			<use xlink:href="#door-01" transform="scale(1,-1)" />',
 		</g>
 		<!-- Arrowhead -->
-		<marker id="arrow_01" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto">
+		<marker id="arrow-01" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto">
 			<path d="M0,0 L10,5 L 0,10 z" fill="#000000" />
 		</marker>
-		<marker id="arrow_01_hover" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto">
+		<marker id="arrow-01-hover" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto">
 			<path d="M0,0 L10,5 L 0,10 z" fill="#F07746" />
 		</marker>
+		<!-- Editor: Point -->
+		<g id="point" class="point">
+			<circle class="point-outer" r="10"/>
+			<circle class="point-inner" r="3"/>
+		</g>
+		<!-- Editor: Cursor (Simple) -->
+		<g id="cursor-simple" class="cursor-simple">
+			<circle cx="0" cy="0" r="15"/>
+		</g>
 	</defs>
 
 	<!-- The sketch -->
 	<g id="sketch">
+		<!-- BG -->
+		<rect id="bg" x="0" y="0" width="640" height="480" />
 		<!-- Images -->
 		<g id="images"></g>
 		<!-- Floors -->
 		<g id="floors">
-			<path class="floor_01" transform="translate(20,20)" d="M0,0 L180,0 L180,140 L120,140 L120,40 L0,40" />
+			<path class="floor-01" transform="translate(20,30)" d="M0,0 L180,0 L180,140 L120,140 L120,40 L0,40 M200,200 L80,200 L80,320" />
 		</g>
 		<!-- Locations -->
 		<g id="locations">
-			<g class="R1" transform="translate(250,20)">
-				<path d="M0,0 L180,0 L180,140 L120,140 L120,40 L0,40" />
-				<text transform="translate(5,20)">Some label</text>
+			<g class="R2" transform="translate(320,30)">
+				<path d="M0,0 L180,0 L180,140 L120,140 L120,40 L0,40 Z"></path>
+				<text transform="translate(5,20)">Blue Building - 0 - 001 / Bathroom</text>
 			</g>
 		</g>
-		<!-- Layer: Walls (and windows)-->
+		<!-- Walls and Windows -->
 		<g id="walls">
-			<path class="wall"   transform="translate(20,20)"   d="M0,0 L180,0 L180,140 L160,140" />
-			<path class="wall"   transform="translate(160,160)" d="M0,0 L-20,0 L-20,-100 L-40,-100 L-40,-60" />
-			<path class="window" transform="translate(120,100)" d="M0,0 L0,60 L-40,100 L-100,100" />
+			<!-- Windows -->
+			<line class="window" x1="120" y1="70" x2="80" y2="70" />
+			<!-- Inner Walls -->
+			<line class="inner" x1="140" y1="70" x2="180" y2="70" />
+			<!-- Outer Walls -->
+			<line class="outer" x1="20" y1="30" x2="200" y2="30" />
+			<line class="outer" x1="200" y1="30" x2="200" y2="170" />
+			<line class="outer" x1="200" y1="170" x2="180" y2="170" />
+			<line class="outer" x1="160" y1="170" x2="140" y2="170" />
+			<line class="outer" x1="140" y1="170" x2="140" y2="70" />
+			<line class="outer" x1="140" y1="70" x2="120" y2="70" />
+			<line class="outer" x1="80" y1="70" x2="20" y2="70" />
 		</g>
-		<!-- Layer: Items -->
+		<!-- Items -->
 		<g id="items">
-			<!-- With <use> instead of x and y, translate is a better fit (otherwise the "centre point" is wrong for scale & rotate) -->
-			<use xlink:href="#item001" transform="translate(250,250)" />
-			<use xlink:href="#item001" transform="translate(200,240)" />
-			<use xlink:href="#item001" transform="translate(200,220) scale(1, -1)" />
-			<use xlink:href="#item001" transform="translate(160,160) rotate(90) scale(1,-1)" />
-			<!-- Cameras are made up of 2 parts, MOVE the group, but ROTATE the arrow like so... -->
-			<g transform="translate(240,340)">
-				<use xlink:href="#camera" />
-				<use xlink:href="#camera_arrow" transform="rotate(45)" />
-			</g>
+			<use xlink:href="#door-01" transform="translate(250,250)" />
+			<use xlink:href="#door-01" transform="translate(200,240)" />
+			<use xlink:href="#door-02" transform="translate(300,220)" />
+			<use xlink:href="#door-02" transform="translate(160,170) rotate(90)" />
 		</g>
-		<!-- Layer: Arrows -->
-		<g id="arrows">
-			<path transform="translate(500,200)" d="M0,0 L-200,0 L-300,-100" />
+		<!-- Floorplan Title -->
+		<text id="title" transform="translate(10,20)">Floorplan Title</text>
+		<!-- Points -->
+		<g id="points"></g>
+		<!-- Cursor -->
+		<g id="cursor">
+			<use xlink:href="#cursor-simple" />
 		</g>
-	</g>
-
-	<!-- This should be added and removed programmatically for our editor -->
-	<g id="editor">
-		<!-- Template: Drag -->
-		<rect id="drag" class="drag" x="300" y="300" height="200" width="120" />
-		<!-- Template: Point -->
-		<g id="point" class="point" transform="translate(300,300)">
-			<circle class="point_outer" r="10"/>
-			<circle class="point_inner" r="3"/>
-		</g>
-		<!-- The visible UI -->
-		<g id="ui"></g>
 	</g>
 
 </svg>

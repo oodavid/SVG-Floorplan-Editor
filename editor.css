@@ -1,0 +1,48 @@
+/* The basics */
+	*  {margin: 0; padding: 0; border: 0;}
+	body {font-family: sans-serif; color: #333333;}
+/* Full page */
+	html, body {height: 100%; overflow: hidden;}
+/* Prevent the cursor going screwy by disabling selections */
+	body {-webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none;}
+	div.clear {clear: both!important; height: 1px!important; margin: -1px 0 0 0!important; overflow: hidden!important; float: none!important;}
+/* Floorplanner - Basic layout */
+	#toolbox	{position: absolute; top: 0;		left: 0;		width: 195px;	bottom: 0;		background: #DADADA; overflow: hidden; padding-left: 5px}
+	#status		{position: absolute; height: 23px;	left: 200px;	right: 0;		bottom: 0;		background: #FFFFFF; overflow: hidden; border-top: 1px solid #DADADA;}
+	#stage		{position: absolute; top: 0;		left: 200px;	right: 0;		bottom: 23px;	background: #EBEBEB; overflow: auto;}
+	/* Tools */
+		#toolbox button				{float: left; width: 40px; height: 40px; margin: 0 5px 5px 0; white-space: pre; text-indent: -2000px; border: 2px solid #FFFFFF; background-color: #FFFFFF; background-position: center center; background-repeat: no-repeat; cursor: pointer;}
+		#toolbox button:hover,
+		#toolbox button:active		{border-color: #DADADA;}
+		#toolbox button.active,
+		#toolbox button.selected	{border-color: #F07746;}
+		/* Icons */
+			button.select		{background-image: url('/gfx/32x32/cursor.png');}
+			button.walls-inner	{background-image: url('./gfx/walls-inner.png');}
+			button.walls-outer	{background-image: url('./gfx/walls-outer.png');}
+			button.walls-window	{background-image: url('./gfx/walls-window.png');}
+			button.items-door-01	{background-image: url('./gfx/items-door-01.png');}
+			button.items-door-02	{background-image: url('./gfx/items-door-02.png');}
+			button.selection-delete		{background-image: url('/gfx/32x32/delete.png');}
+			button.selection-rotate-anticlockwise	{background-image: url('/gfx/32x32/shape_rotate_anticlockwise.png');}
+			button.selection-rotate-clockwise		{background-image: url('/gfx/32x32/shape_rotate_clockwise.png');}
+			button.selection-flip-horizontal		{background-image: url('/gfx/32x32/shape_flip_horizontal.png');}
+			button.selection-flip-vertical			{background-image: url('/gfx/32x32/shape_flip_vertical.png');}
+			button.save								{background-image: url('/gfx/32x32/disk.png');}
+			button.toggle-grid			{background-image: url('./gfx/toggle-grid.png'); background-repeat: repeat!important;}
+		/* Lists */
+			h1, h2, h3, h4, p {margin: 10px 0;}
+			ul		{list-style-type: none; padding: 0; margin: 10px 0;}
+			ul ul	{padding-left: 10px; margin: 0;}
+	/* Stage */
+		#inner		{position: absolute; top: 50%; left: 50%; width: 640px; height: 480px; margin: -240px 0 0 -320px; background: #FFFFFF; -webkit-box-shadow: 0px 0px 10px 1px #CCCCCC; -moz-box-shadow: 0px 0px 10px 1px #CCCCCC; box-shadow: 0px 0px 10px 1px #CCCCCC;}
+		#svg_bg,
+		#svg_source {position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
+	/* Status */
+		#status				{text-align: center; font-family: monospace; line-height: 22px; color: #666666;}
+		#status span		{overflow: hidden; display: -moz-inline-stack; display: inline-block; zoom: 1; *display: inline;}
+		#status #version	{width: 140px;}
+		#status #fine,
+		#status #snap,
+		#status #drag		{width: 100px;}
+		#status #button		{width: 10px;}
