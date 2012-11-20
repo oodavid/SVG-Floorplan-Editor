@@ -43,7 +43,6 @@
 				.point .point-inner			{fill: #F07746;}
 				.point:hover .point-outer	{opacity: 0.5;}
 				.dragbox					{visibility: hidden; stroke: none; fill: #F07746; fill-opacity: 0.2;}
-				.cursor-simple circle				{stroke-width: 2; stroke: black; fill: none;}
 				/* Only When Editing... */
 					.edit #bg								{stroke: #000000; stroke-width: 2; fill: url(#bg-grid);}
 					.edit #sketch #floors path:hover,
@@ -125,32 +124,28 @@
 			<circle class="point-outer" r="10"/>
 			<circle class="point-inner" r="3"/>
 		</g>
-		<!-- Editor: Cursor (Simple) -->
-		<g id="cursor-simple" class="cursor-simple">
-			<circle cx="0" cy="0" r="15"/>
-		</g>
 	</defs>
 	
 	<!-- BG -->
-	<rect class="bg" id="bg" x="0" y="0" width="640" height="480" />
+	<rect id="bg" x="0" y="0" width="640" height="480" />
 
 	<!-- The sketch -->
 	<g id="sketch">
 		<!-- Images -->
-		<g id="images" class="images"></g>
+		<g id="images"></g>
 		<!-- Floors -->
-		<g id="floors" class="floors">
+		<g id="floors">
 			<path class="floor-01" transform="translate(20,30)" d="M0,0 L180,0 L180,140 L120,140 L120,40 L0,40 M200,200 L80,200 L80,320" />
 		</g>
 		<!-- Locations -->
-		<g id="locations" class="locations">
-			<g class="R2" transform="translate(320,30)">
+		<g id="locations">
+			<g id="location-1" class="R2" transform="translate(320,30)">
 				<path d="M0,0 L180,0 L180,140 L120,140 L120,40 L0,40 Z"></path>
 				<text transform="translate(5,20)">Blue Building - 0 - 001 / Bathroom</text>
 			</g>
 		</g>
 		<!-- Walls and Windows -->
-		<g id="walls" class="walls">
+		<g id="walls">
 			<!-- Windows -->
 			<line class="window" x1="120" y1="70" x2="80" y2="70" />
 			<!-- Inner Walls -->
@@ -165,7 +160,7 @@
 			<line class="outer" x1="80" y1="70" x2="20" y2="70" />
 		</g>
 		<!-- Items -->
-		<g id="items" class="items">
+		<g id="items">
 			<use xlink:href="#door-01" transform="translate(160,170) scale(-1,1) rotate(90)" />
 			<use xlink:href="#door-01" transform="translate(250,250)" />
 			<use xlink:href="#door-01" transform="translate(200,240)" />
@@ -174,11 +169,7 @@
 		<!-- Floorplan Title -->
 		<text id="title" transform="translate(10,20)">Floorplan Title</text>
 		<!-- Points -->
-		<g id="points"></g>
-		<!-- Cursor -->
-		<g id="cursor">
-			<use xlink:href="#cursor-simple" />
-		</g>
+		<g id="points"></g>c
 	</g>
 
 </svg>

@@ -96,8 +96,6 @@ FP.mouse.move = function(e){
 	// Snap and store them
 	FP.mouse.drag.x = Math.round(dragx / FP.mouse.snapping) * FP.mouse.snapping;
 	FP.mouse.drag.y = Math.round(dragy / FP.mouse.snapping) * FP.mouse.snapping;
-	// The Cursor follows the mouse at all times
-	$('#cursor').attr('transform', 'translate(' + FP.mouse.x + ',' + FP.mouse.y + ')');
 	// We only need to do stuff when the mouse.drag changes
 	if(FP.mouse.drag.x == oldDragX && FP.mouse.drag.y == oldDragY){
 		return;
@@ -149,7 +147,7 @@ FP.mouse.delegate = function(e, eventName){
 			// Do we need to create the line?
 			if(!FP.tooldata.line){
 				// Reference the walls layer
-				var g = $('#svg_source .walls');
+				var g = FP.svg.getElementById('walls');
 				// Create the line
 				FP.tooldata.line = FP.svg.line(g, FP.mouse.drop.x, FP.mouse.drop.y, FP.mouse.snap.x, FP.mouse.snap.y, { 'class': FP.tooldata.klass });
 			} else {
@@ -170,7 +168,7 @@ FP.mouse.delegate = function(e, eventName){
 		// START
 		if(FP.tool == 'pointer' && FP.mouse.layer == 'toolbox' && eventName == 'dragStart' && FP.mouse.target.hasClass('items-door-01')){
 			FP.tool = 'add-item';
-			FP.tooldata = { 'id': '#door-01' };
+			FP.tooldata = { 'id': 'door-01' };
 			return;
 		}
 		// STOP
@@ -178,9 +176,9 @@ FP.mouse.delegate = function(e, eventName){
 			// To the stage only
 			if($(e.target).closest('svg').length){
 				// Reference the items layer
-				var g = $('#svg_source .items');
+				var g = FP.svg.getElementById('items');
 				// Add the element, set the coords
-				var el = FP.svg.use(g, FP.tooldata.id);
+				var el = FP.svg.use(g, '#' + FP.tooldata.id);
 				FP.transform.set($(el), 'translate', { x: FP.mouse.snap.x, y: FP.mouse.snap.y });
 				// Select it
 				FP.dry.tweakSelection(e, $(el));
@@ -210,10 +208,10 @@ FP.mouse.delegate = function(e, eventName){
 				// Toggle the layer
 				var layer = FP.mouse.target.attr('data-layer');
 				if(FP.mouse.target.hasClass('active')){
-					$('#svg_source .' + layer).hide();
+					$(FP.svg.getElementById(layer)).hide();
 					FP.mouse.target.removeClass('active');
 				} else {
-					$('#svg_source .' + layer).show();
+					$(FP.svg.getElementById(layer)).show();
 					FP.mouse.target.addClass('active');
 				}
 				return;
@@ -258,10 +256,10 @@ FP.mouse.delegate = function(e, eventName){
 						// Toggle the background grid
 						if(FP.mouse.target.hasClass('active')){
 							FP.mouse.target.removeClass('active');
-							$('#svg_source .bg').hide();
+							$(FP.svg.getElementById('bg')).hide();
 						} else {
 							FP.mouse.target.addClass('active');
-							$('#svg_source .bg').show();
+							$(FP.svg.getElementById('bg')).show();
 						}
 						break;
 				}

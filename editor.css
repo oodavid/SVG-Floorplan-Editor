@@ -20,26 +20,26 @@
 		#toolbox button.active,
 		#toolbox button.selected	{border-color: #F07746;}
 		/* Icons */
-			button.pointer		{background-image: url('/gfx/32x32/cursor.png');}
-			button.walls.inner	{background-image: url('./gfx/walls-inner.png');}
-			button.walls.outer	{background-image: url('./gfx/walls-outer.png');}
-			button.walls.window	{background-image: url('./gfx/walls-window.png');}
-			button.items-door-01	{background-image: url('./gfx/items-door-01.png');}
-			button.selection-delete		{background-image: url('/gfx/32x32/delete.png');}
-			button.selection-rotate-anticlockwise	{background-image: url('/gfx/32x32/shape_rotate_anticlockwise.png');}
-			button.selection-rotate-clockwise		{background-image: url('/gfx/32x32/shape_rotate_clockwise.png');}
-			button.selection-flip-horizontal		{background-image: url('/gfx/32x32/shape_flip_horizontal.png');}
-			button.selection-flip-vertical			{background-image: url('/gfx/32x32/shape_flip_vertical.png');}
-			button.save								{background-image: url('/gfx/32x32/disk.png');}
-			.button.help							{background-image: url('/gfx/32x32/help.png');}
-			button.toggle-grid			{background-image: url('./gfx/toggle-grid.png'); background-repeat: repeat!important;}
+			#toolbox button.pointer							{background-image: url('/gfx/32x32/cursor.png');}
+			#toolbox button.walls[data-class=inner]			{background-image: url('./gfx/walls-inner.png');}
+			#toolbox button.walls[data-class=outer]			{background-image: url('./gfx/walls-outer.png');}
+			#toolbox button.walls[data-class=window]		{background-image: url('./gfx/walls-window.png');}
+			#toolbox button.items-door-01					{background-image: url('./gfx/items-door-01.png');}
+			#toolbox button.selection-delete				{background-image: url('/gfx/32x32/delete.png');}
+			#toolbox button.selection-rotate-anticlockwise	{background-image: url('/gfx/32x32/shape_rotate_anticlockwise.png');}
+			#toolbox button.selection-rotate-clockwise		{background-image: url('/gfx/32x32/shape_rotate_clockwise.png');}
+			#toolbox button.selection-flip-horizontal		{background-image: url('/gfx/32x32/shape_flip_horizontal.png');}
+			#toolbox button.selection-flip-vertical			{background-image: url('/gfx/32x32/shape_flip_vertical.png');}
+			#toolbox button.save								{background-image: url('/gfx/32x32/disk.png');}
+			#toolbox .button.help							{background-image: url('/gfx/32x32/help.png');}
+			#toolbox button.toggle-grid			{background-image: url('./gfx/toggle-grid.png'); background-repeat: repeat!important;}
 		/* Lists */
-			h1, h2, h3, h4, p {margin: 10px 0;}
-			ul		{list-style-type: none; padding: 0; margin: 10px 0;}
-			ul ul	{padding-left: 10px; margin: 0;}
-		/* Layers */
-			li.layer		{color: #AAAAAA; cursor: pointer;}
-			li.layer.active	{color: inherit;}
+			#toolbox h1, h2, h3, h4, p {margin: 10px 0;}
+			#toolbox ul			{list-style-type: none; padding: 0; margin: 10px 0;}
+			#toolbox ul ul		{padding-left: 10px; margin: 0;}
+			#toolbox li			{color: #AAAAAA; cursor: pointer;}
+			#toolbox li:hover	{color: #F07746!important;}
+			#toolbox li.active	{color: inherit;}
 	/* Stage */
 		#inner		{position: absolute; top: 50%; left: 50%; width: 640px; height: 480px; margin: -240px 0 0 -320px; background: #FFFFFF; -webkit-box-shadow: 0px 0px 10px 1px #CCCCCC; -moz-box-shadow: 0px 0px 10px 1px #CCCCCC; box-shadow: 0px 0px 10px 1px #CCCCCC;}
 		#svg_bg,

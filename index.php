@@ -16,9 +16,9 @@
 		<!-- Tools -->
 		<h4>Tools</h4>
 		<button class="pointer selected" title="Select Mode [ESC]">&nbsp;</button>
-		<button class="walls outer" data-class="outer"   title="Outer Wall">&nbsp;</button>
-		<button class="walls inner" data-class="inner"   title="Inner Wall">&nbsp;</button>
-		<button class="walls window" data-class="window"  title="Window">&nbsp;</button>
+		<button class="walls" data-class="outer"   title="Outer Wall">&nbsp;</button>
+		<button class="walls" data-class="inner"   title="Inner Wall">&nbsp;</button>
+		<button class="walls" data-class="window"  title="Window">&nbsp;</button>
 		<button class="items-door-01" title="Door (drag to stage)">&nbsp;</button>
 		<div class="clear"></div>
 		<!-- Locations -->
