@@ -19,7 +19,7 @@
 				#floors .floor-04	{fill: url(#floor-04);}
 				#floors .floor-05	{fill: url(#floor-05);}
 			/* Locations */
-				#locations path	{fill: #666666; stroke: #999999; stroke-width: 1px;}
+				#locations path	{fill: #666666; fill-opacity: 0.5; stroke: #999999; stroke-width: 2; stroke-dasharray: 4 4;}
 				#locations .NULL		path	{}
 				#locations .ERROR		path	{}
 				#locations .NAD			path	{fill: #169D16;}
@@ -113,9 +113,6 @@
 			<path d="M0,20 a20,20 0 0,0 20,-20 L0,0" fill="#DDDDDD" stroke="#000000" stroke-width="2" stroke-dasharray="4, 4" />
 			<line x1="0" y1="0" x2="20" y2="0" stroke="#000000" stroke-width="4" stroke-linecap="round" />
 		</g>
-		<g id="door-02">
-			<use xlink:href="#door-01" transform="scale(1,-1)" />',
-		</g>
 		<!-- Arrowhead -->
 		<marker id="arrow-01" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto">
 			<path d="M0,0 L10,5 L 0,10 z" fill="#000000" />
@@ -133,26 +130,27 @@
 			<circle cx="0" cy="0" r="15"/>
 		</g>
 	</defs>
+	
+	<!-- BG -->
+	<rect class="bg" id="bg" x="0" y="0" width="640" height="480" />
 
 	<!-- The sketch -->
 	<g id="sketch">
-		<!-- BG -->
-		<rect id="bg" x="0" y="0" width="640" height="480" />
 		<!-- Images -->
-		<g id="images"></g>
+		<g id="images" class="images"></g>
 		<!-- Floors -->
-		<g id="floors">
+		<g id="floors" class="floors">
 			<path class="floor-01" transform="translate(20,30)" d="M0,0 L180,0 L180,140 L120,140 L120,40 L0,40 M200,200 L80,200 L80,320" />
 		</g>
 		<!-- Locations -->
-		<g id="locations">
+		<g id="locations" class="locations">
 			<g class="R2" transform="translate(320,30)">
 				<path d="M0,0 L180,0 L180,140 L120,140 L120,40 L0,40 Z"></path>
 				<text transform="translate(5,20)">Blue Building - 0 - 001 / Bathroom</text>
 			</g>
 		</g>
 		<!-- Walls and Windows -->
-		<g id="walls">
+		<g id="walls" class="walls">
 			<!-- Windows -->
 			<line class="window" x1="120" y1="70" x2="80" y2="70" />
 			<!-- Inner Walls -->
@@ -167,11 +165,11 @@
 			<line class="outer" x1="80" y1="70" x2="20" y2="70" />
 		</g>
 		<!-- Items -->
-		<g id="items">
+		<g id="items" class="items">
+			<use xlink:href="#door-01" transform="translate(160,170) scale(-1,1) rotate(90)" />
 			<use xlink:href="#door-01" transform="translate(250,250)" />
 			<use xlink:href="#door-01" transform="translate(200,240)" />
-			<use xlink:href="#door-02" transform="translate(300,220)" />
-			<use xlink:href="#door-02" transform="translate(160,170) rotate(90)" />
+			<use xlink:href="#door-01" transform="translate(300,220)" />
 		</g>
 		<!-- Floorplan Title -->
 		<text id="title" transform="translate(10,20)">Floorplan Title</text>

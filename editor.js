@@ -1,18 +1,17 @@
-FP = {};
-// Settings
-FP.tool = 'pointer';	// The active tool
-// When you're ready
+FP = {
+	svg:		false,
+	tool:		'pointer',
+	tooldata:	{},
+};
 FP.init = function(e){
-	// Prepare the SVG elements
-	$('#svg_bg, #svg_source').svg();
-	// Load the BG
-	// $('#svg_bg').svg('get').load('./bg.svg', { addTo: false, changeSize: false });
-	// Load the source
-	$('#svg_source').svg('get').load('./template.svg', { addTo: false, changeSize: false, onLoad: FP.load });
+	// Prepare and load the template
+	$('#svg_source').svg().svg('get').load('./template.svg', { addTo: false, changeSize: false, onLoad: FP.load });
 };
 $(document).ready(FP.init);
-FP.load = function(){
-	// Start the mouse
+FP.load = function(svg){
+	// Store a reference to the SVG element
+	FP.svg = svg;
+	// Start the mouse and statusbar
 	FP.mouse.init();
 	FP.statusbar.init();
 };
@@ -50,7 +49,7 @@ FP.mouse.up = function(e){
 	if(e.which != 1) { return; }
 	// Are we clicking or dragging?
 	if(FP.mouse.dragging){
-		FP.mouse.delegate(e, 'dragEnd');
+		FP.mouse.delegate(e, 'dragStop');
 	} else {
 		FP.mouse.delegate(e, 'click');
 	}
@@ -70,8 +69,8 @@ FP.mouse.setTarget = function(target){
 		// Store the mouse-state and target
 		FP.mouse.down	= true;
 		FP.mouse.target	= target;
-		// Figure out the layer - all direct children of #sketch are layers
-		FP.mouse.layer	= target.closest('#sketch > *').attr('id');
+		// Figure out the layer - either: a direct children of #sketch, "toolbox" or the BG (default)
+		FP.mouse.layer	= target.closest('#sketch > *, #toolbox').attr('id') || 'bg';
 	} else {
 		// Reset everything
 		FP.mouse.down	= false;
@@ -118,54 +117,208 @@ FP.mouse.move = function(e){
 	}
 };
 FP.mouse.delegate = function(e, eventName){
-	// Clicking the title? Edit it!
-	if (FP.mouse.layer == 'title' && eventName == 'click'){
-		// Read the title, prompt the user for a new one then set it
-		var tmp = FP.mouse.target.text();
-		var title = prompt('Enter a New title...', tmp);
-		FP.mouse.target.text(title);
-		return;
-	}
-	// For now we are only looking at "active" layers
-	if($.inArray(FP.mouse.layer, ['floors', 'locations', 'walls', 'items']) == -1){
-		// Debug
-		console.log('delegate > ' + eventName, FP.mouse.target, FP.mouse.layer);
-		return;
-	}
-	// Switch the event
-	switch(eventName){
-		case 'click':
-			// Toggle Selection
-			FP.dry.tweakSelection(e);
-			break;
-		case 'dragStart':
-			// If the target ISN'T already selected...
-			if(!FP.mouse.target.hasClass('selected')){
-				// Toggle Selection
-				FP.dry.tweakSelection(e);
+	/**
+	 * I am purposefully writing this function in a sloppy manner so that I can get the damn thing working
+	 *  with a view to tidying it up later...
+	 */
+	// console.log('delegate > ' + eventName, FP.mouse.target, FP.mouse.layer);
+
+	//
+	// SELECT POINTER
+	//
+		// ACTIVATE
+		if(FP.mouse.layer == 'toolbox' && eventName == 'click' && FP.mouse.target.hasClass('pointer')){
+			FP.tool = 'pointer';
+			FP.tooldata = {};
+			return;
+		}
+	//
+	// WALLS
+	//
+		// ACTIVATE
+		if(FP.mouse.layer == 'toolbox' && eventName == 'click' && FP.mouse.target.hasClass('walls')){
+			FP.tool = 'walls';
+			FP.tooldata = {
+				'klass':	FP.mouse.target.attr('data-class'),
+				'line':		false
+			};
+			return;
+		}
+		// START / MOVE
+		if(FP.tool == 'walls' && FP.mouse.layer != 'toolbox' && $.inArray(eventName, ['drag', 'drag']) != -1){
+			// Do we need to create the line?
+			if(!FP.tooldata.line){
+				// Reference the walls layer
+				var g = $('#svg_source .walls');
+				// Create the line
+				FP.tooldata.line = FP.svg.line(g, FP.mouse.drop.x, FP.mouse.drop.y, FP.mouse.snap.x, FP.mouse.snap.y, { 'class': FP.tooldata.klass });
+			} else {
+				// Update the line
+				FP.svg.change(FP.tooldata.line, { x2: FP.mouse.snap.x, y2: FP.mouse.snap.y });
 			}
-			// Store all the translate values as data...
-			$('#svg_source .selected').each(function(k, v){
-				var translate = FP.transform.get($(this), 'translate');
-				$(this).data('translate', translate);
-			});
-			break;
-		case 'drag':
-			// Set the translate values based on the original coords + the mouse drag distance
-			$('#svg_source .selected').each(function(k, v){
-				var original = $(this).data('translate');
-				var newx = original.x + FP.mouse.drag.x;
-				var newy = original.y + FP.mouse.drag.y;
-				FP.transform.set($(this), 'translate', { x: newx, y: newy });
-			});
-			break;
-		case 'dragEnd':
-		case 'mouseMove':
-		default:
-			// Debug
-			console.log('delegate > ' + eventName, FP.mouse.target, FP.mouse.layer);
-			break;
-	}
+			return;
+		}
+		// STOP
+		if(FP.tool == 'walls' && FP.mouse.layer != 'toolbox' && eventName == 'dragStop'){
+			// Clear the reference
+			FP.tooldata.line = false;
+			return;
+		}
+	//
+	// ITEMS - DOORS, STAIRS etc.
+	//
+		// START
+		if(FP.tool == 'pointer' && FP.mouse.layer == 'toolbox' && eventName == 'dragStart' && FP.mouse.target.hasClass('items-door-01')){
+			FP.tool = 'add-item';
+			FP.tooldata = { 'id': '#door-01' };
+			return;
+		}
+		// STOP
+		if(FP.tool == 'add-item' && eventName == 'dragStop'){
+			// To the stage only
+			if($(e.target).closest('svg').length){
+				// Reference the items layer
+				var g = $('#svg_source .items');
+				// Add the element, set the coords
+				var el = FP.svg.use(g, FP.tooldata.id);
+				FP.transform.set($(el), 'translate', { x: FP.mouse.snap.x, y: FP.mouse.snap.y });
+				// Select it
+				FP.dry.tweakSelection(e, $(el));
+			}
+			FP.tool		= 'pointer';
+			FP.tooldata	= {};
+			return;
+		}
+	//
+	// TITLES - EDIT
+	//
+		// Clicking the title? Edit it!
+		if(FP.tool == 'pointer' && FP.mouse.layer == 'title' && eventName == 'click'){
+			// Read the title, prompt the user for a new one then set it
+			var tmp = FP.mouse.target.text();
+			var title = prompt('Enter a New title...', tmp);
+			FP.mouse.target.text(title);
+			return;
+		}
+	//
+	// SELECTION MODIFICATION
+	//
+		// Clicking the toolbox?
+		if(FP.tool == 'pointer' && FP.mouse.layer == 'toolbox' && eventName == 'click'){
+			// Clicking of layers...
+			if(FP.mouse.target.hasClass('layer')){
+				// Toggle the layer
+				var layer = FP.mouse.target.attr('data-layer');
+				if(FP.mouse.target.hasClass('active')){
+					$('#svg_source .' + layer).hide();
+					FP.mouse.target.removeClass('active');
+				} else {
+					$('#svg_source .' + layer).show();
+					FP.mouse.target.addClass('active');
+				}
+				return;
+			}
+			// Clicking of buttons...
+			if(FP.mouse.target[0].nodeName.toLowerCase() == 'button'){
+				switch(FP.mouse.target.attr('class')){
+					case 'selection-rotate-clockwise':
+					case 'selection-rotate-anticlockwise':
+						// Direction?
+						var deg = FP.mouse.target.attr('class') == 'selection-rotate-clockwise' ? 45 : -45;
+						// Rotate all selected items - ignore lines...
+						$('#svg_source .selected:not(line)').each(function(k, v){
+							// Each "flip" operation inverts rotation, we need to adjust for that...
+							var scale	= FP.transform.get($(this), 'scale');
+							var newdeg	= FP.transform.get($(this), 'rotate');
+							newdeg += (scale.x + scale.y) == 0 ? -deg : deg;
+							FP.transform.set($(this), 'rotate', newdeg);
+						});
+						break;
+					case 'selection-flip-horizontal':
+					case 'selection-flip-vertical':
+						// Which axis?
+						var axis = FP.mouse.target.attr('class') == 'selection-flip-horizontal' ? 'x' : 'y';
+						// Flip all selected items - ignore lines...
+						$('#svg_source .selected:not(line)').each(function(k, v){
+							var scale = FP.transform.get($(this), 'scale');
+							scale[axis] *= -1;
+							FP.transform.set($(this), 'scale', scale);
+						});
+						break;
+					case 'selection-delete':
+						// Confirm...
+						if(confirm('Are you sure you want to delete the selected items?')){
+							// Flip all selected items - ignore lines...
+							$('#svg_source .selected').remove();
+						}
+						break;
+					case 'toggle-grid':
+					case 'toggle-grid active':
+					case 'active toggle-grid':
+						// Toggle the background grid
+						if(FP.mouse.target.hasClass('active')){
+							FP.mouse.target.removeClass('active');
+							$('#svg_source .bg').hide();
+						} else {
+							FP.mouse.target.addClass('active');
+							$('#svg_source .bg').show();
+						}
+						break;
+				}
+			}
+			return;
+		}
+	//
+	// SELECTION - DESELECT
+	//
+		// Clicking the BG?
+		if(FP.tool == 'pointer' && FP.mouse.layer == 'bg' && eventName == 'click'){
+			// If we're not holding CTRL, then deselect
+			if(!e.ctrlKey){
+				FP.dry.clearSelection();
+			}
+			return;
+		}
+	//
+	// SELECTION - ADD, REMOVE, DRAG
+	//
+		// For the remaining events we only want "active" layers
+		if(FP.tool == 'pointer' && $.inArray(FP.mouse.layer, ['floors', 'locations', 'walls', 'items']) != -1){
+			// Switch the event
+			switch(eventName){
+				case 'click':
+					// Toggle Selection
+					FP.dry.tweakSelection(e, FP.mouse.target);
+					break;
+				case 'dragStart':
+					// If the target ISN'T already selected...
+					if(!FP.mouse.target.hasClass('selected')){
+						// Toggle Selection
+						FP.dry.tweakSelection(e, FP.mouse.target);
+					}
+					// Store all the translate values as data...
+					$('#svg_source .selected').each(function(k, v){
+						var translate = FP.transform.get($(this), 'translate');
+						$(this).data('translate', translate);
+					});
+					break;
+				case 'drag':
+					// Set the translate values based on the original coords + the mouse drag distance
+					$('#svg_source .selected').each(function(k, v){
+						var original = $(this).data('translate');
+						var newx = original.x + FP.mouse.drag.x;
+						var newy = original.y + FP.mouse.drag.y;
+						FP.transform.set($(this), 'translate', { x: newx, y: newy });
+					});
+					break;
+				case 'dragStop':
+				case 'mouseMove':
+				default:
+					// Debug
+					console.log('delegate > ' + eventName, FP.mouse.target, FP.mouse.layer);
+					break;
+			}
+		}
 };
 
 /***************** DRY *****************/
@@ -176,13 +329,13 @@ FP.dry.clearSelection = function(){
 	// Simples
 	$('#svg_source .selected').removeClass('selected');
 };
-FP.dry.tweakSelection = function(e){
+FP.dry.tweakSelection = function(e, el){
 	// Not holding the CTRL key? Clear the selection
 	if(!e.ctrlKey){
 		FP.dry.clearSelection();
 	}	
-	// TOGGLE the target (if we just cleared, this always equates to addClass() )
-	FP.mouse.target.toggleClass('selected');
+	// TOGGLE the element (if we just cleared, this always equates to addClass() )
+	el.toggleClass('selected');
 };
 
 /***************** Transform *****************/
@@ -208,12 +361,12 @@ FP.transform.set = function(el, property, value){
 			newAttr[property] = value.x + ',' + value.y;
 			break;
 		case "rotate":
-			newAttr[property] = value.deg;
+			newAttr[property] = value;
 			break;
 	}
-	// Rebuild into a string, the order must ALWAYS be: translate(x,y) rotate(deg) scale(x,y)
+	// Rebuild into a string, the order must ALWAYS be: translate(x,y) scale(x,y) rotate(deg)
 	var attrStr = '';
-	$.each(['translate', 'rotate', 'scale'], function(k, v){
+	$.each(['translate', 'scale', 'rotate'], function(k, v){
 		if(newAttr[v]){
 			attrStr += v + '(' + newAttr[v] + ') ';
 		}
@@ -245,17 +398,17 @@ FP.transform.get = function(el, property){
 			return values;
 		case "rotate":
 			// Defaults:
-			var values = { deg: 0 };
+			var value = 0;
 			if(transform){
 				// Match it
 				var regex = /rotate\((-?\d*)\)/i;
 				var rotate = transform.match(regex);
 				if(rotate){
 					// Update
-					values.deg = parseFloat(rotate[1], 10);
+					value = parseFloat(rotate[1], 10);
 				}
 			}
-			return values;
+			return value;
 	}
 };
 

@@ -15,12 +15,11 @@
 	<div id="toolbox">
 		<!-- Tools -->
 		<h4>Tools</h4>
-		<button class="select selected" title="Select Mode [ESC]">&nbsp;</button>
-		<button class="walls-outer"   title="Outer Wall">&nbsp;</button>
-		<button class="walls-inner"   title="Inner Wall">&nbsp;</button>
-		<button class="walls-window"  title="Window">&nbsp;</button>
+		<button class="pointer selected" title="Select Mode [ESC]">&nbsp;</button>
+		<button class="walls outer" data-class="outer"   title="Outer Wall">&nbsp;</button>
+		<button class="walls inner" data-class="inner"   title="Inner Wall">&nbsp;</button>
+		<button class="walls window" data-class="window"  title="Window">&nbsp;</button>
 		<button class="items-door-01" title="Door (drag to stage)">&nbsp;</button>
-		<button class="items-door-02" title="Door (drag to stage)">&nbsp;</button>
 		<div class="clear"></div>
 		<!-- Locations -->
 		<h4>Locations</h4>
@@ -34,9 +33,11 @@
 		<!-- Layers -->
 		<h4>Layers</h4>
 		<ul>
-			<li><label><input name="items" type="checkbox" checked="checked"> Items &amp; Assets</label></li>
-			<li><label><input name="walls" type="checkbox" checked="checked"> Walls &amp; Windows</label></li>
-			<li><label><input name="locations" type="checkbox" checked="checked"> Locations</label></li>
+			<li class="layer active" data-layer="items">Items &amp; Assets</li>
+			<li class="layer active" data-layer="walls">Walls &amp; Windows</li>
+			<li class="layer active" data-layer="locations">Locations</li>
+			<li class="layer active" data-layer="floors">Floors</li>
+			<li class="layer active" data-layer="images">Images</li>
 		</ul>
 		<!-- Selection Options -->
 		<h4>Selection Options</h4>
@@ -47,6 +48,7 @@
 		<button class="save"							title="Save Floorplans">&nbsp;</button>
 		<button class="toggle-grid active"				title="Toggle Grid">&nbsp;</button>
 		<button class="selection-delete"				title="Delete Selection [DEL]">&nbsp;</button>
+		<a class="button help" title="Help &amp; Info" href="/todo.html" target="_blank">&nbsp;</a>
 		<div class="clear"></div>
 	</div>
 	<!-- Stage -->

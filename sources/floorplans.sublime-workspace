@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"text-",
+				"text-decoration"
+			],
+			[
+				"repe",
+				"repeat"
+			],
+			[
 				"key",
 				"keydown"
 			],
@@ -291,7 +299,7 @@
 			"file": "/home/david/Documents/svgfloorplans.com/index.php",
 			"settings":
 			{
-				"buffer_size": 3645,
+				"buffer_size": 2962,
 				"line_ending": "Unix"
 			}
 		},
@@ -299,7 +307,7 @@
 			"file": "/home/david/Documents/svgfloorplans.com/editor.css",
 			"settings":
 			{
-				"buffer_size": 2904,
+				"buffer_size": 3587,
 				"line_ending": "Unix"
 			}
 		},
@@ -307,7 +315,15 @@
 			"file": "/home/david/Documents/svgfloorplans.com/editor.js",
 			"settings":
 			{
-				"buffer_size": 5458,
+				"buffer_size": 12530,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/david/Documents/svgfloorplans.com/todo.html",
+			"settings":
+			{
+				"buffer_size": 7034,
 				"line_ending": "Unix"
 			}
 		},
@@ -315,7 +331,7 @@
 			"file": "/home/david/Documents/svgfloorplans.com/template.svg",
 			"settings":
 			{
-				"buffer_size": 6992,
+				"buffer_size": 8136,
 				"line_ending": "Unix"
 			}
 		},
@@ -331,7 +347,7 @@
 			"file": "/home/david/Documents/svgfloorplans.com/data.php",
 			"settings":
 			{
-				"buffer_size": 3095,
+				"buffer_size": 3070,
 				"line_ending": "Unix"
 			}
 		}
@@ -339,9 +355,17 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 75.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
 			[
 				"fetch",
 				"Fetch"
@@ -373,13 +397,9 @@
 			[
 				"",
 				"Package Control: Install Package"
-			],
-			[
-				"package",
-				"Package Control: List Packages"
 			]
 		],
-		"width": 575.0
+		"width": 593.0
 	},
 	"console":
 	{
@@ -396,14 +416,16 @@
 	},
 	"file_history":
 	[
+		"/home/david/Documents/svgfloorplans.com/todo.html",
+		"/home/david/Documents/svgfloorplans.com/render.php",
+		"/home/david/Documents/svgfloorplans.com/data.php",
+		"/home/david/Documents/svgfloorplans.com/editor.css",
 		"/home/david/Documents/svgfloorplans.com/index.html",
 		"/home/david/Documents/svg-edit/svg-edit-read-only/editor/select.js",
 		"/home/david/Documents/svg-edit/svg-edit-read-only/CHANGES",
 		"/home/david/Documents/svgfloorplans.com/template.svg",
 		"/home/david/Documents/svgfloorplans.com/bg.svg",
 		"/home/david/Documents/svgfloorplans.com/svgfloorplans.js",
-		"/home/david/Documents/svgfloorplans.com/data.php",
-		"/home/david/Documents/svgfloorplans.com/render.php",
 		"/home/david/Documents/lucion.co.uk/actions/index.php",
 		"/home/david/Documents/lucion.co.uk/actions/NexGen.php",
 		"/home/david/Documents/svgfloorplans.com/render.js",
@@ -521,9 +543,7 @@
 		"/home/david/Documents/lucion.co.uk/schema/lightform.css",
 		"/home/david/Documents/lucion.co.uk/print/preview.html",
 		"/home/david/Documents/lucion.co.uk/print/templates/bulk_id.html",
-		"/home/david/Documents/lucion.co.uk/staff.php",
-		"/home/david/Documents/lucion.co.uk/print/wkhtmltopdf-reset/wkhtmltopdf.js",
-		"/home/david/Documents/lucion.co.uk/crm.php"
+		"/home/david/Documents/lucion.co.uk/staff.php"
 	],
 	"find":
 	{
@@ -531,7 +551,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"/home/david/Documents/svg-edit/",
@@ -570,6 +590,28 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"FP.dry.tweakSelection",
+			"dragEnd",
+			"#bg",
+			"grid",
+			"console",
+			"context",
+			"selected",
+			"Bash ",
+			"text-",
+			"<td>--</td>",
+			"deleg",
+			"FP.transform.getDefinition",
+			"FP.transform.setDefinition",
+			"FP.transforms.",
+			"FP.mouse.storeClickTarget",
+			"canvas",
+			"_",
+			"camera_arrow",
+			"01_hover",
+			"arrow_",
+			"point_",
+			"floor_0",
 			"border",
 			"getRubberBandBox",
 			"this.rubberBandBox",
@@ -675,29 +717,7 @@
 			"NGC.infowindow",
 			"NGC.map",
 			"sites",
-			"site",
-			"schema",
-			"autosuggest",
-			"utils",
-			"$USERID",
-			"replenish_search_table",
-			"exposed",
-			"<\\?[^php]",
-			"<\\?",
-			"\\<\\?",
-			"\\<\\?[^p]",
-			"<?[^p]",
-			"fulltext",
-			"contacts",
-			"users",
-			"tmpl",
-			"password",
-			"jobs",
-			"string",
-			"figurestring",
-			"upsert",
-			"timeout",
-			"boolean"
+			"site"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -705,6 +725,18 @@
 		"regex": false,
 		"replace_history":
 		[
+			"dragStop",
+			"",
+			"<td></td>",
+			"FP.transform.get",
+			"FP.transform.set",
+			"FP.transform.",
+			"FP.mouse.setTarget",
+			"camera-arrow",
+			"01-hover",
+			"arrow-",
+			"floor-",
+			"floor-0",
 			"FP.mouse.move",
 			"FP.mouse.up",
 			"FP.mouse.down",
@@ -820,7 +852,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -828,15 +860,15 @@
 					"file": "/home/david/Documents/svgfloorplans.com/index.php",
 					"settings":
 					{
-						"buffer_size": 3645,
+						"buffer_size": 2962,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								608,
-								637
+								15,
+								15
 							]
 						],
 						"settings":
@@ -855,22 +887,21 @@
 					"file": "/home/david/Documents/svgfloorplans.com/editor.css",
 					"settings":
 					{
-						"buffer_size": 2904,
+						"buffer_size": 3587,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								767,
-								767
+								1860,
+								1860
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": false
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -883,15 +914,15 @@
 					"file": "/home/david/Documents/svgfloorplans.com/editor.js",
 					"settings":
 					{
-						"buffer_size": 5458,
+						"buffer_size": 12530,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								509,
-								509
+								5612,
+								5612
 							]
 						],
 						"settings":
@@ -900,40 +931,68 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1998.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "/home/david/Documents/svgfloorplans.com/template.svg",
+					"file": "/home/david/Documents/svgfloorplans.com/todo.html",
 					"settings":
 					{
-						"buffer_size": 6992,
+						"buffer_size": 7034,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6113,
-								6113
+								3428,
+								3428
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/XML/XML.tmLanguage",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1632.0,
+						"translation.y": 1566.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
+					"file": "/home/david/Documents/svgfloorplans.com/template.svg",
+					"settings":
+					{
+						"buffer_size": 8136,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6890,
+								6890
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1540.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "/home/david/Documents/svgfloorplans.com/svgfloorplans.js",
 					"settings":
 					{
@@ -944,8 +1003,8 @@
 						"selection":
 						[
 							[
-								2926,
-								2926
+								5221,
+								5221
 							]
 						],
 						"settings":
@@ -954,25 +1013,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1020.0,
+						"translation.y": 2550.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 6,
 					"file": "/home/david/Documents/svgfloorplans.com/data.php",
 					"settings":
 					{
-						"buffer_size": 3095,
+						"buffer_size": 3070,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1400,
-								1400
+								1549,
+								1549
 							]
 						],
 						"settings":
